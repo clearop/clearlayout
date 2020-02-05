@@ -6,32 +6,47 @@
 
 \newcommand{\belemsiz}{\footnotesize}
 
+% ARG 1: X pos 
+% ARG 2: text
 \newcommand{\correctorMagnet}[2]{
-    \filldraw[blue!80] (#1,0) -- (#1-0.15, 0.7) -- (#1+0.15, 0.7);
-    \filldraw[blue!80] (#1,0) -- (#1-0.15,-0.7) -- (#1+0.15,-0.7);
+    \filldraw[blue!80] (#1,0) -- (#1-0.15, 0.35) -- (#1+0.15, 0.35);
+    \filldraw[blue!80] (#1,0) -- (#1-0.15,-0.35) -- (#1+0.15,-0.35);
     
     \node[rotate=-90,anchor=west] at (#1,-0.7) {\belemsiz #2};
 }
 
-\newcommand{\BTV}[4][0.0]{
+% ARG 1: Y pos (default = 0.0)
+% ARG 2: X pos
+% ARG 3: text
+\newcommand{\BTV}[3][0.0]{
     \draw[ultra thick, purple] (#2,#1) circle (0.3);
     \draw[ultra thick, purple] (#2,#1-0.2) -- (#2,#1+0.2);
     
     \node[rotate=-90,anchor=west,align=left] at (#2,#1-0.7) {\belemsiz #3};
 }
 
+% ARG 1: Y pos (default = 0.0)
+% ARG 2: X pos
+% ARG 3: text
+% ARG 4: radius
 \newcommand{\cBPM}[4][0.0]{
     \draw[ultra thick, purple] (#2,#1) circle (#4);
     
     \node[rotate=-90,anchor=west] at (#2,#1-0.7) {\belemsiz #3};
 }
 
+% ARG 1: Y pos (default = 0.0)
+% ARG 2: X pos
+% ARG 3: text
 \newcommand{\iBPM}[3][0.0]{
     \draw[ultra thick, purple] ({#2-0.15},#1-0.15) rectangle ({#2+0.15},#1+0.15);
     
     \node[rotate=-90,anchor=west] at (#2,#1-0.7) {\belemsiz #3};
 }
 
+% ARG 1: Color (default = blue!50)
+% ARG 2: X pos
+% ARG 3: text
 \newcommand{\lensF}[3][blue!50] {
     \pgfmathsetmacro{\lensRadius}{2};
     \pgfmathsetmacro{\lensHeight}{0.7};
@@ -45,6 +60,8 @@
    \node[rotate=-90,anchor=west,align=left] at (#2,-0.7) {\belemsiz #3};
 }
 
+% ARG 1: X pos
+% ARG 2: text
 \newcommand{\lensD}[2] {
     \pgfmathsetmacro{\lensRadius}{2};
     \pgfmathsetmacro{\lensHeight}{0.7};
@@ -70,10 +87,23 @@
 % ARG 5: Color
 \newcommand{\kickerHV}[5][0.0] {
 
-    \filldraw[#5] ({#2-0.45/2},{#4*0.7+#1}) -- ({#2+0.45/2},{#4*0.7+#1}) -- (#2,{-1*#4*0.7+#1});
+    \filldraw[#5] ({#2-0.3/2},{#4*0.35+#1}) -- ({#2+0.3/2},{#4*0.35+#1}) -- (#2,{-1*#4*0.35+#1});
     
     \node[rotate=-90,anchor=west] at (#2,#1-0.7) {\belemsiz #3};
 }
+
+
+% ARG 1: Y pos (default = 0.0)
+% ARG 2: X pos
+% ARG 3: text
+% ARG 4: rotation angle
+\newcommand{\dipole}[5][0.0] {
+
+    \filldraw[blue, rotate around={#4:(#2,#1)}] ({#2-0.4/2},{-0.6+#1}) rectangle ({#2+0.4/2},{0.6+#1});
+    
+    \node[rotate=-90,anchor=west] at (#2,#1-0.7) {\belemsiz #3};
+}
+
 
 % ARGS: x1,y1, x2,y2
 \newcommand{\solRect}[4] {

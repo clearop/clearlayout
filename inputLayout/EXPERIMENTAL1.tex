@@ -4,25 +4,27 @@
 
 \begin{tikzpicture}
     %BEAM INSTRUMENTATION TEST STAND AREA
-    \filldraw[green] (11.3,-0.4) rectangle (13.7,0.4);
-    \node at ({(11.3+13.7)/2},-2.25) {\textbf{BI test area}};
+    %\filldraw[green] (11.3,-0.4) rectangle (13.7,0.4);
+    %\node at ({(11.3+13.7)/2},-2.25) {\textbf{BI test area}};
 
     %CLIC test area
-    \filldraw[green] (10.9,-0.5) rectangle (6.55,0.5);
-    \node at ({(10.3+7.8)/2},-2.25) {\textbf{CLIC test area}};
+    %\filldraw[green] (10.9,-0.5) rectangle (6.55,0.5);
+    %\node at ({(10.3+7.8)/2},-2.25) {\textbf{CLIC test area}};
 
     %IN-AIR table
-    \filldraw[green] (-0.6,-0.5) rectangle (0.5,0.5);
-    \node[align=left,anchor=west] at (-0.6,1.0) {\textbf{In-Air}\\ \textbf{test area}};
+    %\filldraw[green] (-0.6,-0.5) rectangle (0.5,0.5);
+    %\node[align=left,anchor=west] at (-0.6,1.0) {\textbf{In-Air}\\ \textbf{test area}};
     \filldraw[gray] (-0.6,-2.0) rectangle (-0.5,0.5);
 
     % PLASMA LENS
-    \filldraw[green] (3.45,-0.7) rectangle (4.6,0.7);
+    %\filldraw[green] (3.45,-0.7) rectangle (4.6,0.7);
 
     %THE BEAM
     \draw[latex-,ultra thick] (0,0)--(16,0);
 
-    \kickerHV[0]{15.8}{BHB 400}{1}{blue};
+    %\kickerHV[0]{15.8}{BHB 400}{1}{blue};
+    \dipole[0]{15.8}{BHB 400}{{10}};
+
 
     \lensF{15.4}{QFD 510};
     \lensD{15.0}{QDD 515};
@@ -55,12 +57,12 @@
     \BTV{10.5}{BTV 620};
     \node at (10.5,1) {\belemsiz 26.04~m};
 
-    \draw[ultra thick, orange] (10.1,-0.4) rectangle (9.7,0.4);
+    \filldraw[ultra thick, orange] (10.1,-0.15) rectangle (9.7,0.15);
     \node[rotate=-90,anchor=west] at (9.9,-0.7)
         {\belemsiz ACS 640};
 
-    \draw[ultra thick, orange] (9.6,-0.4) rectangle (9.2,0.4);
-    \filldraw[purple] (9.55,-0.5) rectangle (9.5,0.5);
+    \filldraw[ultra thick, orange] (9.6,-0.15) rectangle (9.2,0.15);
+    \filldraw[purple] (9.53,-0.4) rectangle (9.48,0.4);
     \node[rotate=-90,anchor=west,align=left] at (9.4,-0.7)
         {\belemsiz WFM 645\\[-0.5em]
          \belemsiz ACS 650};
@@ -92,7 +94,7 @@
     \lensF[green!30]{4.3}{PLC 800\\[-0.5em]
              \belemsiz BTV 800\\[-0.5em]
              \belemsiz BTV 805};
-    \node at (4.3,-2.25) {\textbf{Plasma lens}};
+    %\node at (4.3,-2.25) {\textbf{Plasma lens}};
     \node at (4.3,0.9) {\belemsiz 32.26~m};
 
     \BTV{3.8}{BTV 810};
@@ -114,7 +116,10 @@
     \pgfmathsetmacro{\InAirY}{(\InAirStart+0.6)*tan(\InAirAngle)};
 
     \draw[-latex,ultra thick] (\InAirStart,0)--(-0.6,\InAirY);
-    \kickerHV[0]{\InAirStart}{BHB 900}{1}{blue};
+    
+    %\kickerHV[0]{\InAirStart}{BHB 900}{1}{blue};
+    \dipole[0]{\InAirStart}{BHB 900}{{-\InAirAngle/2}};
+
     \node at (\InAirStart,0.9) {\belemsiz 35.03~m};
 
     \pgfmathsetmacro{\InAirBTVaX}{0.0};
@@ -134,11 +139,11 @@
     \node[anchor=south] at (0.5,0.3) {\belemsiz ICT 915};
 
     %% RF SYSTEM
-    \filldraw[orange] (11.5,0.5) -- (11.5+0.5,1.5) -- (11.5-0.5,1.5) -- cycle;
-    \draw[ultra thick, orange,] (11.5,1.25) -- (9.6,1.25);
-    \draw[ultra thick, orange, dashed, -latex] (9.6,1.25) -- (9.6,0.4);
-    \draw[ultra thick, orange, dashed, -latex] (9.6,1.25) -- (9.6,0.8) -- (10.1,0.8) -- (10.1,0.4);
-    \node[align=center,anchor=north] at (11.5,1.5) {\belemsiz MKX\\ \belemsiz 1};
+    \filldraw[orange!65] (11.5,0.7) -- (11.5+0.5,1.7) -- (11.5-0.5,1.7) -- cycle;
+    \draw[ultra thick, orange!65,] (11.5,1.45) -- (9.6,1.45);
+    \draw[ultra thick, orange!65, dashed, -latex] (9.6,1.45) -- (9.6,0.2);
+    \draw[ultra thick, orange!65, dashed, -latex] (9.6,1.45) -- (9.6,0.8) -- (10.1,0.8) -- (10.1,0.2);
+    \node[align=center,anchor=north] at (11.5,1.7) {\belemsiz MKX\\ \belemsiz 1};
 
   \end{tikzpicture}
 
