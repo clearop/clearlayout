@@ -1,0 +1,222 @@
+%% TIKZ DRAWING OF CALIFES ELEMENTS
+%% TO BE INCLUDED INTO A LATEX DOCUMENT
+%% K. Sjobak, 2018
+
+\begin{tikzpicture}
+
+    %EOS table
+    \filldraw[green] (4.9,-0.4) rectangle (2.9,0.4);
+    \filldraw[green] (4.9,-0.4) rectangle (4.7,-2);
+    \filldraw[green] (2.9,-0.4) rectangle (3.1,-2);
+
+    %BEAM
+    \draw[latex-,ultra thick] (0,0)--(15,0);
+    \draw[ultra thick, dashed] (-1,0) -- (0,0);
+
+    %% GUN
+    \node at (15,1) {\belemsiz 0.0~m};
+
+    % Gun solenoids
+    \solRect{15}{0.5}{14}{0.7}
+    \solRect{15}{-0.5}{14}{-0.7}
+
+    \solRect{15.25}{0.5}{15}{0.7}
+    \solRect{15.25}{-0.5}{15}{-0.7}
+
+    % Gun cavity
+    \draw[orange, ultra thick] (15,0.0) to (15,0.4)
+        arc(90:180:0.15)
+        arc(360:180:0.05) arc(0:180:0.15)
+        arc(360:180:0.05) arc(0:180:0.15);
+    \draw[orange, ultra thick] (15,0.0) to (15,-0.4)
+        arc(-90:-180:0.15)
+        arc(0:180:0.05) arc(0:-180:0.15)
+        arc(0:180:0.05) arc(0:-180:0.15);
+
+    \node[rotate=-90,anchor=west,align=left] at (15+0.25/2, -0.7)
+        {\belemsiz SNH 110};
+    \node[rotate=-90,anchor=west,align=left] at (14.5, -0.7)
+        {\belemsiz GUN 115\\
+         \belemsiz SNI 120};
+
+    \correctorMagnet{13.7}{DG 130};
+    \node at (13.7,1) {\belemsiz 0.32~m};
+
+    %Laser mirror
+    \draw[ultra thick]  ({(13.7-13)/2+13 + 0.1}, -0.1) --
+                        ({(13.7-13)/2+13 - 0.1}, -0.3);
+
+    %Laser
+    \draw[thick,-latex,dashed]
+        ({(13.7-13)/2+13},-2.25) --
+        ({(13.7-13)/2+13},-0.2) --
+        (15,0);
+
+    %Laser table
+    \BTV[-2.25]{14}{};
+    \draw[thick, -latex, dashed]
+        (13,-2.25) -- (14,-2.25);
+    \node at (14.9,-2.25) {\belemsiz BTV125};
+
+    \draw[ultra thick] ({(13.7-13)/2+13-0.25/2}, -2.25-0.25/2) --
+                       ({(13.7-13)/2+13+0.25/2}, -2.25+0.25/2);
+
+    %ICT 210
+    \filldraw[purple] (12.95-0.1/2,-0.3) rectangle (12.95+0.1/2,0.3);
+    \node[rotate=-90,anchor=west] at (12.95,-0.7) {\belemsiz ICT 210};
+
+    \BTV{12.35}{MTV 215};
+    \node at (12.35,0.6) {\belemsiz 1.81~m};
+
+    \cBPM{11.8}{BPC 220}{0.15};
+    \correctorMagnet{11.5}{DG 225};
+    %\node at (11.5,1) {\belemsiz 2.18~m}; !Moved to the bottom, to be on top of RF network
+
+    %ACS 230
+    \draw[ultra thick, orange] (11.3,-0.4) rectangle (10.2,0.4);
+
+    \solRect{11.3}{0.6}{10.2}{0.7}
+    \solRect{11.3}{-0.6}{10.2}{-0.7}
+
+    \filldraw[blue] (11.3, 0.45) rectangle (10.2,  0.55);
+    \filldraw[blue] (11.3,-0.45) rectangle (10.2, -0.55);
+
+    \node[rotate=-90,anchor=west, align=left] at (10.2+1.1/2,-0.7)
+        {\belemsiz ACS 230\\
+         \belemsiz DB 230-S\\
+         \belemsiz SNG 230};
+
+    \cBPM{9.9}{BPC 240}{0.15};
+    \correctorMagnet{9.6}{DG 245};
+    %\node at (9.6,1) {\belemsiz 7.33~m}; !Moved to bottom
+
+    % ACS 250
+    \draw[ultra thick, orange] (9.3,-0.4) rectangle (8.2,0.4);
+    \node[rotate=-90,anchor=west, align=left] at (8.2+1.1/2,-0.7) {\belemsiz ACS 250\\
+     \belemsiz SNG 250};
+
+    \solRect{9.3}{0.5}{8.2}{0.7};
+    \solRect{9.3}{-0.5}{8.2}{-0.7};
+
+    \cBPM{7.9}{BPC 260}{0.15};
+    \correctorMagnet{7.6}{DG 265};
+    %\node at (7.6,1) {\belemsiz 12.49~m}; !Moved to bottom
+
+    % ACS 270
+    \draw[ultra thick, orange] (7.3,-0.4) rectangle (6.2,0.4);
+    \node[rotate=-90,anchor=west] at (6.2+1.1/2,-0.7) {\belemsiz ACS 270};
+
+    \node at (10,-2.25) {\textbf{CALIFES S-band injector}};
+
+    \cBPM{5.9}{BPC 310}{0.15};
+    \correctorMagnet{5.6}{DG 320};
+    \node at (5.6,1) {\belemsiz 17.70~m};
+
+    \kickerHV[0]{5.125}{SDH 340}{-1}{orange};
+
+    %\draw[ultra thick, purple] (4.15,-0.15) rectangle (3.85,0.15);
+
+    \lensF{4.4}{QFD 350};
+    \lensD{3.9}{QDD 355};
+    \lensF{3.4}{QFD 360};
+    \node at (3.9,1) {\belemsiz 18.90~m};
+
+
+    %EOS table defined on top, to get behind the "beam"
+    \draw[-latex, dashed,thick] (4.8,-2) -- (4.8,-0.2) -- (3.0,-0.2) -- (3,-2);
+    %\node at (4.8,-2.25) {\belemsiz EOS laser};
+    \node at (3.9,-2.25) {\textbf{Electro-Optical Sampling}};
+
+    \cBPM{2.7}{BPC 380}{0.15};
+    \correctorMagnet{2.4}{DG 385};
+    \node at (2.4,1) {\belemsiz 19.96~m};
+
+    \BTV{2.0}{MTV 390};
+
+    %% VESPER
+
+    \pgfmathsetmacro{\VesperStart}{1.5}; %Center of the dipole (X)
+    \pgfmathsetmacro{\VesperAngle}{-22.0};
+    %Arrow end point
+    \pgfmathsetmacro{\VesperX}{-1};
+    \pgfmathsetmacro{\VesperY}{(\VesperStart-\VesperX)*tan(\VesperAngle)};
+
+    \pgfmathsetmacro{\VesperTabX}{-0.0};
+    \pgfmathsetmacro{\VesperTabY}{(\VesperStart-\VesperTabX)*tan(\VesperAngle)};
+    \filldraw[green,rotate around={-\VesperAngle:(\VesperTabX,\VesperTabY)}]
+    (\VesperTabX-0.5, \VesperTabY-0.4) rectangle
+    (\VesperTabX+0.5, \VesperTabY+0.4);
+    %\node[rotate=-90,anchor=west] at (\VesperTabX,\VesperTabY-0.7) {\belemsiz VESPER};
+    \node at (\VesperTabX+0.4, -2.5) {\textbf{VESPER}};
+
+    \filldraw[gray,rotate around={-\VesperAngle:(\VesperX,\VesperY)}]
+        (\VesperX-0.05, \VesperY-0.5) rectangle
+        (\VesperX+0.05, \VesperY+0.5);
+
+    \draw[->,ultra thick] (\VesperStart,0)--(\VesperX,\VesperY);
+
+    \kickerHV[0]{\VesperStart}{BHB 400}{1}{blue};
+
+    \pgfmathsetmacro{\VesperBTVaX}{0.9};
+    \pgfmathsetmacro{\VesperBTVaY}{(\VesperStart-\VesperBTVaX)*tan(\VesperAngle)};
+    \BTV[\VesperBTVaY]{\VesperBTVaX}{BTV420}
+
+    % ICT 430
+    \pgfmathsetmacro{\VesperICTX}{0.4};
+    \pgfmathsetmacro{\VesperICTY}{(\VesperStart-\VesperICTX)*tan(\VesperAngle)};
+    \filldraw[purple,rotate around={-\VesperAngle:(\VesperICTX,\VesperICTY)}]
+        (\VesperICTX-0.1/2, \VesperICTY-0.3) rectangle
+        (\VesperICTX+0.1/2, \VesperICTY+0.3);
+
+    \node[rotate=-90,anchor=west] at (\VesperICTX,\VesperICTY-0.7) {\belemsiz ICT 430};
+
+    \pgfmathsetmacro{\VesperBTVbX}{-0.5};
+    \pgfmathsetmacro{\VesperBTVbY}{(\VesperStart-\VesperBTVbX)*tan(\VesperAngle)};
+    \BTV[\VesperBTVbY]{\VesperBTVbX}{BTV440}
+
+    %% RF SYSTEM %%
+    \pgfmathsetmacro{\RFyOFF}{-0.2};
+
+    % MKS15
+    \filldraw[orange] (12.35,1.0+\RFyOFF) -- (12.35+0.5,2+\RFyOFF) -- (12.35-0.5,2+\RFyOFF) -- cycle;
+
+    \draw[-latex,orange,ultra thick] (12.35,1.75+\RFyOFF) -- (11.3,1.75+\RFyOFF) -- (11.3,0.4);
+
+    \filldraw[orange!50] (11.6,1.75+\RFyOFF) circle (0.25);
+    \node at (11.6,1.75+\RFyOFF) {\belemsiz $\Delta \Phi$};
+
+    \draw[-latex,orange,ultra thick] (12.35,1.75+\RFyOFF) -- (14.5+0.15/2,1.75+\RFyOFF) -- (14.5+0.15/2,0.4);
+
+    \filldraw[orange!50] (14,1.75+\RFyOFF) circle (0.25);
+    \node at (14,1.75+\RFyOFF) {\belemsiz $\Delta \Phi$};
+
+    \filldraw[orange!50] (13.25,1.75+\RFyOFF) circle (0.25);
+    \node at (13.25,1.75+\RFyOFF) {\belemsiz $\Delta P$};
+
+    \node[align=center,anchor=north] at (12.35,2+\RFyOFF) {\belemsiz MKS\\ \belemsiz 15};
+
+    % MKS10
+    \filldraw[orange] (10.7,1.0+\RFyOFF) -- (10.7+0.5,2+\RFyOFF) -- (10.7-0.5,2+\RFyOFF) -- cycle;
+    \draw[orange, ultra thick, -latex] (10.5,1.75+\RFyOFF) -- (9.3,1.75+\RFyOFF) -- (9.3,0.4);
+    \draw[orange, ultra thick, -latex] (10.5,1.75+\RFyOFF) -- (7.3,1.75+\RFyOFF) -- (7.3,0.4);
+
+    \node[align=center,anchor=north] at (10.7,2+\RFyOFF) {\belemsiz MKS\\ \belemsiz 10};
+
+    % MKS31
+    \filldraw[orange] (6.4,1.0+\RFyOFF) -- (6.4+0.5,2+\RFyOFF) -- (6.4-0.5,2+\RFyOFF) -- cycle;
+    \draw[orange, ultra thick, -latex] (6.4,1.75+\RFyOFF) -- (5.125,1.75+\RFyOFF) -- (5.125,0.6);
+%    \draw[orange, ultra thick, -latex] (10.5,1.75) -- (7.3,1.75) -- (7.3,0.4);
+
+    \node[align=center,anchor=north] at (6.4,2+\RFyOFF) {\belemsiz MKS\\ \belemsiz 31};
+
+    % Text on top of the orange
+    \node at (11.5,1) {\belemsiz 2.18~m};
+    \node at (9.6,1) {\belemsiz 7.33~m};
+    \node at (7.6,1) {\belemsiz 12.49~m};
+
+\end{tikzpicture}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../IPAC2019_CLEAR.tex"
+%%% End:
