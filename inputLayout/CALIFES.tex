@@ -4,10 +4,35 @@
 
 \begin{tikzpicture}
 
+    % Initialise some variables: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \pgfmathsetmacro{\VesperStart}{1.5}; %Center of the dipole (X)
+    \pgfmathsetmacro{\VesperAngle}{-22.0};
+    %Arrow end point
+    \pgfmathsetmacro{\VesperX}{-1};
+    \pgfmathsetmacro{\VesperY}{(\VesperStart-\VesperX)*tan(\VesperAngle)};
+
+    \pgfmathsetmacro{\VesperTabX}{-0.0};
+    \pgfmathsetmacro{\VesperTabY}{(\VesperStart-\VesperTabX)*tan(\VesperAngle)};
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% GREEN Area to indicate experiments
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
     %EOS table
-   % \filldraw[green] (4.9,-0.4) rectangle (2.9,0.4);
-    %\filldraw[green] (4.9,-0.4) rectangle (4.7,-2);
-    %\filldraw[green] (2.9,-0.4) rectangle (3.1,-2);
+    \filldraw[green] (3.25, -0.5) rectangle (2.9,0.5);
+    \node at (3.1, -2.5) {\textbf{EOS}};
+
+    \filldraw[green,rotate around={-\VesperAngle:(\VesperTabX,\VesperTabY)}]
+    (\VesperTabX-0.5, \VesperTabY-0.4) rectangle
+    (\VesperTabX+0.5, \VesperTabY+0.4);
+    %\node[rotate=-90,anchor=west] at (\VesperTabX,\VesperTabY-0.7) {\belemsiz VESPER};
+    \node at (\VesperTabX+0.4, -2.5) {\textbf{VESPER}};
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
     %BEAM
     \draw[latex-,ultra thick] (0,0)--(15,0);
@@ -141,20 +166,7 @@
     \BTV{2.0}{MTV 390};
 
     %% VESPER
-
-    \pgfmathsetmacro{\VesperStart}{1.5}; %Center of the dipole (X)
-    \pgfmathsetmacro{\VesperAngle}{-22.0};
-    %Arrow end point
-    \pgfmathsetmacro{\VesperX}{-1};
-    \pgfmathsetmacro{\VesperY}{(\VesperStart-\VesperX)*tan(\VesperAngle)};
-
-    \pgfmathsetmacro{\VesperTabX}{-0.0};
-    \pgfmathsetmacro{\VesperTabY}{(\VesperStart-\VesperTabX)*tan(\VesperAngle)};
-    %\filldraw[green,rotate around={-\VesperAngle:(\VesperTabX,\VesperTabY)}]
-    %(\VesperTabX-0.5, \VesperTabY-0.4) rectangle
-    %(\VesperTabX+0.5, \VesperTabY+0.4);
-    %%\node[rotate=-90,anchor=west] at (\VesperTabX,\VesperTabY-0.7) {\belemsiz VESPER};
-    %\node at (\VesperTabX+0.4, -2.5) {\textbf{VESPER}};
+    
 
     \filldraw[gray,rotate around={-\VesperAngle:(\VesperX,\VesperY)}]
         (\VesperX-0.05, \VesperY-0.5) rectangle

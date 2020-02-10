@@ -3,21 +3,33 @@
 %% K. Sjobak, 2018
 
 \begin{tikzpicture}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% GREEN Areas to indicate experiments
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
     %BEAM INSTRUMENTATION TEST STAND AREA
-    %\filldraw[green] (11.3,-0.4) rectangle (13.7,0.4);
-    %\node at ({(11.3+13.7)/2},-2.25) {\textbf{BI test area}};
+    \filldraw[green] (11.3,-0.4) rectangle (13.7,0.4);
+    \node at ({(11.3+13.7)/2},-2.25) {\textbf{BI test area}};
 
     %CLIC test area
-    %\filldraw[green] (10.9,-0.5) rectangle (6.55,0.5);
-    %\node at ({(10.3+7.8)/2},-2.25) {\textbf{CLIC test area}};
+    \filldraw[green] (10.9,-0.5) rectangle (6.55,0.5);
+    \node at ({(10.3+7.8)/2},-2.25) {\textbf{CLIC test area}};
 
     %IN-AIR table
-    %\filldraw[green] (-0.6,-0.5) rectangle (0.5,0.5);
-    %\node[align=left,anchor=west] at (-0.6,1.0) {\textbf{In-Air}\\ \textbf{test area}};
-    \filldraw[gray] (-0.6,-2.0) rectangle (-0.5,0.5);
+    \filldraw[green] (-0.6,-0.5) rectangle (0.5,0.5);
+    \node[align=left,anchor=west] at (-0.6,1.0) {\textbf{In-Air}\\ \textbf{test area}};
 
     % PLASMA LENS
-    %\filldraw[green] (3.45,-0.7) rectangle (4.6,0.7);
+    \filldraw[green] (3.45,-0.7) rectangle (4.6,0.7);
+    \node at (4.3,-2.25) {\textbf{Plasma lens}};
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    %FINAL DUMP
+    \filldraw[gray] (-0.6,-2.0) rectangle (-0.5,0.5);
 
     %THE BEAM
     \draw[latex-,ultra thick] (0,0)--(16,0);
@@ -94,7 +106,6 @@
     \lensF[green!30]{4.3}{PLC 800\\[-0.5em]
              \belemsiz BTV 800\\[-0.5em]
              \belemsiz BTV 805};
-    %\node at (4.3,-2.25) {\textbf{Plasma lens}};
     \node at (4.3,0.9) {\belemsiz 32.26~m};
 
     \BTV{3.8}{BTV 810};
