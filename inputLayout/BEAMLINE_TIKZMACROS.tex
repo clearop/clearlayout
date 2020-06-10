@@ -6,13 +6,15 @@
 
 \newcommand{\belemsiz}{\footnotesize}
 
-% ARG 1: X pos 
+% ARG 1: X pos
 % ARG 2: text
 \newcommand{\correctorMagnet}[2]{
     \filldraw[blue!80] (#1,0) -- (#1-0.15, 0.35) -- (#1+0.15, 0.35);
     \filldraw[blue!80] (#1,0) -- (#1-0.15,-0.35) -- (#1+0.15,-0.35);
-    
-    \node[rotate=-90,anchor=west] at (#1,-0.7) {\belemsiz #2};
+
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west] at (#1,-0.7) {\belemsiz #2};
+    \fi
 }
 
 % ARG 1: Y pos (default = 0.0)
@@ -21,8 +23,10 @@
 \newcommand{\BTV}[3][0.0]{
     \draw[ultra thick, purple] (#2,#1) circle (0.3);
     \draw[ultra thick, purple] (#2,#1-0.2) -- (#2,#1+0.2);
-    
-    \node[rotate=-90,anchor=west,align=left] at (#2,#1-0.7) {\belemsiz #3};
+
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west,align=left] at (#2,#1-0.7) {\belemsiz #3};
+    \fi
 }
 
 % ARG 1: Y pos (default = 0.0)
@@ -31,8 +35,10 @@
 % ARG 4: radius
 \newcommand{\cBPM}[4][0.0]{
     \draw[ultra thick, purple] (#2,#1) circle (#4);
-    
-    \node[rotate=-90,anchor=west] at (#2,#1-0.7) {\belemsiz #3};
+
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west] at (#2,#1-0.7) {\belemsiz #3};
+    \fi
 }
 
 % ARG 1: Y pos (default = 0.0)
@@ -40,8 +46,10 @@
 % ARG 3: text
 \newcommand{\iBPM}[3][0.0]{
     \draw[ultra thick, purple] ({#2-0.15},#1-0.15) rectangle ({#2+0.15},#1+0.15);
-    
-    \node[rotate=-90,anchor=west] at (#2,#1-0.7) {\belemsiz #3};
+
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west] at (#2,#1-0.7) {\belemsiz #3};
+    \fi
 }
 
 % ARG 1: Color (default = blue!50)
@@ -51,13 +59,15 @@
     \pgfmathsetmacro{\lensRadius}{2};
     \pgfmathsetmacro{\lensHeight}{0.7};
     \pgfmathsetmacro{\startAngle}{asin(\lensHeight/\lensRadius)};
-    
+
     \draw [fill=#1]  (#2,\lensHeight)
          arc[start angle=180-\startAngle,delta angle=2*\startAngle,radius=\lensRadius]
          arc[start angle=-\startAngle,delta angle=2*\startAngle,radius=\lensRadius]
          -- cycle; % to get a better line end
 
-   \node[rotate=-90,anchor=west,align=left] at (#2,-0.7) {\belemsiz #3};
+    \if\getvalue{elemnames}1
+       \node[rotate=-90,anchor=west,align=left] at (#2,-0.7) {\belemsiz #3};
+    \fi
 }
 
 % ARG 1: X pos
@@ -66,7 +76,7 @@
     \pgfmathsetmacro{\lensRadius}{2};
     \pgfmathsetmacro{\lensHeight}{0.7};
     \pgfmathsetmacro{\startAngle}{asin(\lensHeight/\lensRadius)};
-    
+
     \draw [fill=blue!50]  (#1,\lensHeight) --
          (#1-0.2,\lensHeight)
          arc[start angle= 180+\startAngle,
@@ -77,7 +87,9 @@
              delta angle=-2*\startAngle,radius=-\lensRadius] --
              cycle;
 
-   \node[rotate=-90,anchor=west] at (#1,-0.7) {\belemsiz #2};
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west] at (#1,-0.7) {\belemsiz #2};
+    \fi
 }
 
 % ARG 1: Y pos (default = 0.0)
@@ -88,8 +100,10 @@
 \newcommand{\kickerHV}[5][0.0] {
 
     \filldraw[#5] ({#2-0.3/2},{#4*0.35+#1}) -- ({#2+0.3/2},{#4*0.35+#1}) -- (#2,{-1*#4*0.35+#1});
-    
-    \node[rotate=-90,anchor=west] at (#2,#1-0.7) {\belemsiz #3};
+
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west] at (#2,#1-0.7) {\belemsiz #3};
+    \fi
 }
 
 
@@ -100,8 +114,10 @@
 \newcommand{\dipole}[5][0.0] {
 
     \filldraw[blue, rotate around={#4:(#2,#1)}] ({#2-0.4/2},{-0.6+#1}) rectangle ({#2+0.4/2},{0.6+#1});
-    
-    \node[rotate=-90,anchor=west] at (#2,#1-0.7) {\belemsiz #3};
+
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west] at (#2,#1-0.7) {\belemsiz #3};
+    \fi
 }
 
 
@@ -111,3 +127,8 @@
     \draw[blue] (#1,#2) -- (#3,#4);
     \draw[blue] (#3,#2) -- (#1,#4);
 }
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../layout.tex"
+%%% End:
