@@ -1,8 +1,7 @@
 %% TIKZ DRAWING OF CLEAR EXPERIMENTAL BEAMLINE 1 ELEMENTS
 %% TO BE INCLUDED INTO A LATEX DOCUMENT
-%% K. Sjobak, 2018
-
-\begin{tikzpicture}
+%% INSIDE A TIKZPICTURE ENVIRONMENT
+%% K. Sjobak, 2018--2020, D. Gamba 2020
 
     \if\getvalue{elemnames}1
         \pgfmathsetmacro{\BotLegyOFF}{0.0};
@@ -34,14 +33,20 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    %FINAL DUMP
-    \filldraw[gray] (-0.6,-2.0) rectangle (-0.5,0.5);
+    % FINAL DUMP
+    \if\getvalue{elemnames}1
+        \filldraw[gray] (-0.6,-2.0) rectangle (-0.5,0.5);
+    \else
+        \filldraw[gray] (-0.6,-1.2) rectangle (-0.5,0.5);
+    \fi
 
     %THE BEAM
     \draw[latex-,ultra thick] (0,0)--(16,0);
 
-    %\kickerHV[0]{15.8}{BHB 400}{1}{blue};
-    \dipole[0]{15.8}{BHB 400}{{10}};
+    % \kickerHV[0]{15.8}{BHB 400}{1}{blue};
+    \if\getvalue{unbroken}0
+        \dipole[0]{15.8}{BHB 400}{{10}};
+    \fi
 
 
     \lensF{15.4}{QFD 510};
@@ -197,10 +202,11 @@
         \draw[ultra thick, orange!65,] (11.5,1.45) -- (9.6,1.45);
         \draw[ultra thick, orange!65, dashed, -latex] (9.6,1.45) -- (9.6,0.2);
         \draw[ultra thick, orange!65, dashed, -latex] (9.6,1.45) -- (9.6,0.8) -- (10.1,0.8) -- (10.1,0.2);
-        \node[align=center,anchor=north] at (11.5,1.7) {\belemsiz MKX\\ \belemsiz 1};
+        \if\getvalue{elemnames}1
+            \node[align=center,anchor=north] at (11.5,1.7) {\belemsiz MKX\\ \belemsiz 1};
+        \fi
     \fi
 
-  \end{tikzpicture}
 
 %%% Local Variables:
 %%% mode: latex

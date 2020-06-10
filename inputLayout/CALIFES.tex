@@ -1,8 +1,7 @@
 %% TIKZ DRAWING OF CALIFES ELEMENTS
 %% TO BE INCLUDED INTO A LATEX DOCUMENT
-%% K. Sjobak, 2018
-
-\begin{tikzpicture}
+%% INSIDE A TIKZPICTURE ENVIRONMENT
+%% K. Sjobak, 2018--2020, D. Gamba 2020
 
     % Initialise some variables: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \pgfmathsetmacro{\VesperStart}{1.5}; %Center of the dipole (X)
@@ -44,9 +43,13 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-    %BEAM
-    \draw[latex-,ultra thick] (0,0)--(15,0);
-    \draw[ultra thick, dashed] (-1,0) -- (0,0);
+    %% BEAM
+    \if\getvalue{unbroken}0
+        \draw[latex-,ultra thick] (0,0)--(15,0);
+        \draw[ultra thick, dashed] (-1,0) -- (0,0);
+    \else
+        \draw[latex-,ultra thick] (-1,0)--(15,0);
+    \fi
 
     %% GUN
     \if\getvalue{distances}1
@@ -83,7 +86,7 @@
         \node at (13.7,1) {\belemsiz 0.32~m};
     \fi
 
-    \if\getvalue{auxelems}1
+    \if\getvalue{auxElems}1
         % Laser mirror
         \draw[ultra thick]  ({(13.7-13)/2+13 + 0.1}, -0.1) --
                         ({(13.7-13)/2+13 - 0.1}, -0.3);
@@ -235,36 +238,48 @@
 
     %% RF SYSTEM %%
     \if\getvalue{auxElems}1
-    % MKS15
-    \filldraw[orange!65] (12.35,1.0+\RFyOFF) -- (12.35+0.5,2+\RFyOFF) -- (12.35-0.5,2+\RFyOFF) -- cycle;
-    \draw[-latex,orange!65,ultra thick] (12.35,1.75+\RFyOFF) -- (11.3,1.75+\RFyOFF) -- (11.3,0.4);
+        % MKS15
+        \filldraw[orange!65] (12.35,1.0+\RFyOFF) -- (12.35+0.5,2+\RFyOFF) -- (12.35-0.5,2+\RFyOFF) -- cycle;
+        \draw[-latex,orange!65,ultra thick] (12.35,1.75+\RFyOFF) -- (11.3,1.75+\RFyOFF) -- (11.3,0.4);
 
-    \filldraw[orange!50] (11.6,1.75+\RFyOFF) circle (0.25);
-    \node at (11.6,1.75+\RFyOFF) {\belemsiz $\Delta \Phi$};
+        \filldraw[orange!50] (11.6,1.75+\RFyOFF) circle (0.25);
+        \if\getvalue{elemnames}1
+            \node at (11.6,1.75+\RFyOFF) {\belemsiz $\Delta \Phi$};
+        \fi
 
-    \draw[-latex,orange!65,ultra thick] (12.35,1.75+\RFyOFF) -- (14.5+0.15/2,1.75+\RFyOFF) -- (14.5+0.15/2,0.4);
+        \draw[-latex,orange!65,ultra thick] (12.35,1.75+\RFyOFF) -- (14.5+0.15/2,1.75+\RFyOFF) -- (14.5+0.15/2,0.4);
 
-    \filldraw[orange!50] (14,1.75+\RFyOFF) circle (0.25);
-    \node at (14,1.75+\RFyOFF) {\belemsiz $\Delta \Phi$};
+        \filldraw[orange!50] (14,1.75+\RFyOFF) circle (0.25);
+        \if\getvalue{elemnames}1
+            \node at (14,1.75+\RFyOFF) {\belemsiz $\Delta \Phi$};
+        \fi
 
-    \filldraw[orange!50] (13.25,1.75+\RFyOFF) circle (0.25);
-    \node at (13.25,1.75+\RFyOFF) {\belemsiz $\Delta P$};
+        \filldraw[orange!50] (13.25,1.75+\RFyOFF) circle (0.25);
+        \if\getvalue{elemnames}1
+            \node at (13.25,1.75+\RFyOFF) {\belemsiz $\Delta P$};
+        \fi
 
-    \node[align=center,anchor=north] at (12.35,2+\RFyOFF) {\belemsiz MKS\\ \belemsiz 15};
+        \if\getvalue{elemnames}1
+            \node[align=center,anchor=north] at (12.35,2+\RFyOFF) {\belemsiz MKS\\ \belemsiz 15};
+        \fi
 
-    % MKS11
-    \filldraw[orange!65] (10.7,1.0+\RFyOFF) -- (10.7+0.5,2+\RFyOFF) -- (10.7-0.5,2+\RFyOFF) -- cycle;
-    \draw[orange!65, ultra thick, -latex] (10.5,1.75+\RFyOFF) -- (9.3,1.75+\RFyOFF) -- (9.3,0.3);
-    \draw[orange!65, ultra thick, -latex] (10.5,1.75+\RFyOFF) -- (7.3,1.75+\RFyOFF) -- (7.3,0.2);
+        % MKS11
+        \filldraw[orange!65] (10.7,1.0+\RFyOFF) -- (10.7+0.5,2+\RFyOFF) -- (10.7-0.5,2+\RFyOFF) -- cycle;
+        \draw[orange!65, ultra thick, -latex] (10.5,1.75+\RFyOFF) -- (9.3,1.75+\RFyOFF) -- (9.3,0.3);
+        \draw[orange!65, ultra thick, -latex] (10.5,1.75+\RFyOFF) -- (7.3,1.75+\RFyOFF) -- (7.3,0.2);
 
-    \node[align=center,anchor=north] at (10.7,2+\RFyOFF) {\belemsiz MKS\\ \belemsiz 11};
+        \if\getvalue{elemnames}1
+            \node[align=center,anchor=north] at (10.7,2+\RFyOFF) {\belemsiz MKS\\ \belemsiz 11};
+        \fi
 
-    % MKS31
-    \filldraw[orange!65] (6.4,1.0+\RFyOFF) -- (6.4+0.5,2+\RFyOFF) -- (6.4-0.5,2+\RFyOFF) -- cycle;
-    \draw[orange!65, ultra thick, -latex] (6.4,1.75+\RFyOFF) -- (5.125,1.75+\RFyOFF) -- (5.125,0.35);
-%    \draw[orange, ultra thick, -latex] (10.5,1.75) -- (7.3,1.75) -- (7.3,0.4);
+        % MKS31
+        \filldraw[orange!65] (6.4,1.0+\RFyOFF) -- (6.4+0.5,2+\RFyOFF) -- (6.4-0.5,2+\RFyOFF) -- cycle;
+        \draw[orange!65, ultra thick, -latex] (6.4,1.75+\RFyOFF) -- (5.125,1.75+\RFyOFF) -- (5.125,0.35);
+        % \draw[orange, ultra thick, -latex] (10.5,1.75) -- (7.3,1.75) -- (7.3,0.4);
 
-    \node[align=center,anchor=north] at (6.4,2+\RFyOFF) {\belemsiz MKS\\ \belemsiz 31};
+        \if\getvalue{elemnames}1
+            \node[align=center,anchor=north] at (6.4,2+\RFyOFF) {\belemsiz MKS\\ \belemsiz 31};
+        \fi
     \fi
 
     % Text on top of the orange
@@ -273,8 +288,6 @@
         \node at (9.6,1) {\belemsiz 7.33~m};
         \node at (7.6,1) {\belemsiz 12.49~m};
     \fi
-
-\end{tikzpicture}
 
 %%% Local Variables:
 %%% mode: latex
