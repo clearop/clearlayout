@@ -23,7 +23,7 @@
     \if\getvalue{elemnames}1
         \pgfmathsetmacro{\BotLegyOFF}{0.0};
     \else
-        \pgfmathsetmacro{\BotLegyOFF}{1.0};
+        \pgfmathsetmacro{\BotLegyOFF}{1.1};
     \fi
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% GREEN Area to indicate experiments
@@ -83,26 +83,28 @@
         \node at (13.7,1) {\belemsiz 0.32~m};
     \fi
 
-    %Laser mirror
-    \draw[ultra thick]  ({(13.7-13)/2+13 + 0.1}, -0.1) --
+    \if\getvalue{auxelems}1
+        % Laser mirror
+        \draw[ultra thick]  ({(13.7-13)/2+13 + 0.1}, -0.1) --
                         ({(13.7-13)/2+13 - 0.1}, -0.3);
 
-    %Laser
-    \draw[thick,-latex,dashed]
-        ({(13.7-13)/2+13},-2.25+\BotLegyOFF) --
-        ({(13.7-13)/2+13},-0.2) --
-        (15,0);
+        %Laser
+        \draw[thick,-latex,dashed]
+            ({(13.7-13)/2+13},-2.25+\BotLegyOFF) --
+            ({(13.7-13)/2+13},-0.2) --
+            (15,0);
 
-    %Laser table
-    \BTV[-2.25+\BotLegyOFF]{14}{};
-    \draw[thick, -latex, dashed]
-        (13,-2.25+\BotLegyOFF) -- (14,-2.25+\BotLegyOFF);
-    \if\getvalue{elemnames}1
-        \node at (14.9,-2.25) {\belemsiz BTV125};
+        %Laser table
+        \BTV[-2.25+\BotLegyOFF]{14}{};
+        \draw[thick, -latex, dashed]
+            (13,-2.25+\BotLegyOFF) -- (14,-2.25+\BotLegyOFF);
+        \if\getvalue{elemnames}1
+            \node at (14.9,-2.25) {\belemsiz BTV125};
+        \fi
+
+        \draw[ultra thick] ({(13.7-13)/2+13-0.25/2}, -2.25-0.25/2+\BotLegyOFF) --
+                           ({(13.7-13)/2+13+0.25/2}, -2.25+0.25/2+\BotLegyOFF);
     \fi
-
-    \draw[ultra thick] ({(13.7-13)/2+13-0.25/2}, -2.25-0.25/2+\BotLegyOFF) --
-                       ({(13.7-13)/2+13+0.25/2}, -2.25+0.25/2+\BotLegyOFF);
 
     %ICT 210
     \filldraw[purple] (12.95-0.1/2,-0.3) rectangle (12.95+0.1/2,0.3);
@@ -232,7 +234,7 @@
     \BTV[\VesperBTVbY]{\VesperBTVbX}{BTV440}
 
     %% RF SYSTEM %%
-
+    \if\getvalue{auxElems}1
     % MKS15
     \filldraw[orange!65] (12.35,1.0+\RFyOFF) -- (12.35+0.5,2+\RFyOFF) -- (12.35-0.5,2+\RFyOFF) -- cycle;
     \draw[-latex,orange!65,ultra thick] (12.35,1.75+\RFyOFF) -- (11.3,1.75+\RFyOFF) -- (11.3,0.4);
@@ -263,6 +265,7 @@
 %    \draw[orange, ultra thick, -latex] (10.5,1.75) -- (7.3,1.75) -- (7.3,0.4);
 
     \node[align=center,anchor=north] at (6.4,2+\RFyOFF) {\belemsiz MKS\\ \belemsiz 31};
+    \fi
 
     % Text on top of the orange
     \if\getvalue{distances}1

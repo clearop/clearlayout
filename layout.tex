@@ -25,17 +25,40 @@
 
 % document with single figures
 \begin{document}
-\centering
-\setvalue{distances = 1}
-\setvalue{elemnames = 1}
-\input{./inputLayout/CALIFES.tex}
-\input{./inputLayout/EXPERIMENTAL1.tex}
-\input{./inputLayout/LEGEND.tex}
+
+\section{CLEAR beamline layout drawings}
 
 \noindent\makebox[\linewidth]{\rule{\linewidth}{1.0pt}}
 
-\setvalue{distances = 0}
-\setvalue{elemnames = 0}
-\input{./inputLayout/CALIFES.tex}
-\input{./inputLayout/EXPERIMENTAL1.tex}
+\subsection{All text ON}
+\begin{center}
+  \setvalue{distances = 1}
+  \setvalue{elemnames = 1}
+  \setvalue{auxElems  = 1}
+  \input{./inputLayout/CALIFES.tex}
+  \input{./inputLayout/EXPERIMENTAL1.tex}
+  \input{./inputLayout/LEGEND.tex}
+\end{center}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{1.0pt}}
+
+\subsection{Simplified (no distances or element names)}
+\begin{center}
+  \setvalue{distances = 0}
+  \setvalue{elemnames = 0}
+  \setvalue{auxElems  = 1}
+  \input{./inputLayout/CALIFES.tex}
+  \input{./inputLayout/EXPERIMENTAL1.tex}
+\end{center}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{1.0pt}}
+
+\subsection{Beamline only (no distances, element names, RF, or laser)}
+\begin{center}
+  \setvalue{distances = 0}
+  \setvalue{elemnames = 0}
+  \setvalue{auxElems  = 0}
+  \input{./inputLayout/CALIFES.tex}
+  \input{./inputLayout/EXPERIMENTAL1.tex}
+\end{center}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{1.0pt}}
+
 \end{document}

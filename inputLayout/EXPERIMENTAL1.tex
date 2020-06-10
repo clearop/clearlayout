@@ -192,11 +192,13 @@
     \fi
 
     %% RF SYSTEM
-    \filldraw[orange!65] (11.5,0.7) -- (11.5+0.5,1.7) -- (11.5-0.5,1.7) -- cycle;
-    \draw[ultra thick, orange!65,] (11.5,1.45) -- (9.6,1.45);
-    \draw[ultra thick, orange!65, dashed, -latex] (9.6,1.45) -- (9.6,0.2);
-    \draw[ultra thick, orange!65, dashed, -latex] (9.6,1.45) -- (9.6,0.8) -- (10.1,0.8) -- (10.1,0.2);
-    \node[align=center,anchor=north] at (11.5,1.7) {\belemsiz MKX\\ \belemsiz 1};
+    \if\getvalue{auxElems}1
+        \filldraw[orange!65] (11.5,0.7) -- (11.5+0.5,1.7) -- (11.5-0.5,1.7) -- cycle;
+        \draw[ultra thick, orange!65,] (11.5,1.45) -- (9.6,1.45);
+        \draw[ultra thick, orange!65, dashed, -latex] (9.6,1.45) -- (9.6,0.2);
+        \draw[ultra thick, orange!65, dashed, -latex] (9.6,1.45) -- (9.6,0.8) -- (10.1,0.8) -- (10.1,0.2);
+        \node[align=center,anchor=north] at (11.5,1.7) {\belemsiz MKX\\ \belemsiz 1};
+    \fi
 
   \end{tikzpicture}
 
