@@ -1,17 +1,41 @@
 \documentclass{article}
+\usepackage[margin=1cm]{geometry}
+\usepackage{showframe}
 \usepackage{tikz}
 %\usepackage{etoolbox}
 
-% set up externalization
-\usetikzlibrary{external}
-\tikzexternalize[prefix=./outputLayout/]
+%Set/get variables, see https://tex.stackexchange.com/a/37113
+\usepackage{pgfkeys}
+\newcommand{\setvalue}[1]{\pgfkeys{/variables/#1}}
+\newcommand{\getvalue}[1]{\pgfkeysvalueof{/variables/#1}}
+\newcommand{\declare}[1]{%
+  \pgfkeys{
+    /variables/#1.is family,
+    /variables/#1.unknown/.style = {\pgfkeyscurrentpath/\pgfkeyscurrentname/.initial = ##1}
+  }%
+}
+\declare{} %Setup the /variables directory
+
+% set up externalization (COMMENT OUT FOR DEBUGGING!)
+% \usetikzlibrary{external}
+% \tikzexternalize[prefix=./outputLayout/]
 
 % load macros
 \input{./inputLayout/BEAMLINE_TIKZMACROS.tex}
 
 % document with single figures
 \begin{document}
+\centering
+\setvalue{distances = 1}
+\setvalue{elemnames = 1}
 \input{./inputLayout/CALIFES.tex}
 \input{./inputLayout/EXPERIMENTAL1.tex}
 \input{./inputLayout/LEGEND.tex}
+
+\noindent\makebox[\linewidth]{\rule{\linewidth}{1.0pt}}
+
+\setvalue{distances = 0}
+\setvalue{elemnames = 0}
+\input{./inputLayout/CALIFES.tex}
+\input{./inputLayout/EXPERIMENTAL1.tex}
 \end{document}
