@@ -20,19 +20,24 @@
         \pgfmathsetmacro{\RFyOFF}{-0.5};
     \fi
 
+    \if\getvalue{elemnames}1
+        \pgfmathsetmacro{\BotLegyOFF}{0.0};
+    \else
+        \pgfmathsetmacro{\BotLegyOFF}{1.0};
+    \fi
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% GREEN Area to indicate experiments
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     %EOS table
     \filldraw[green] (3.25, -0.5) rectangle (2.9,0.5);
-    \node at (3.1, -2.5) {\textbf{EOS}};
+    \node at (3.1, -2.5+\BotLegyOFF) {\textbf{EOS}};
 
     \filldraw[green,rotate around={-\VesperAngle:(\VesperTabX,\VesperTabY)}]
     (\VesperTabX-0.5, \VesperTabY-0.4) rectangle
     (\VesperTabX+0.5, \VesperTabY+0.4);
     %\node[rotate=-90,anchor=west] at (\VesperTabX,\VesperTabY-0.7) {\belemsiz VESPER};
-    \node at (\VesperTabX+0.4, -2.5) {\textbf{VESPER}};
+    \node at (\VesperTabX+0.4, -2.5+\BotLegyOFF) {\textbf{VESPER}};
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -65,11 +70,13 @@
         arc(0:180:0.05) arc(0:-180:0.1)
         arc(0:180:0.05) arc(0:-180:0.1);
 
-    \node[rotate=-90,anchor=west,align=left] at (15+0.25/2, -0.7)
-        {\belemsiz SNH 110};
-    \node[rotate=-90,anchor=west,align=left] at (14.5, -0.7)
-        {\belemsiz GUN 115\\
-         \belemsiz SNI 120};
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west,align=left] at (15+0.25/2, -0.7)
+            {\belemsiz SNH 110};
+        \node[rotate=-90,anchor=west,align=left] at (14.5, -0.7)
+            {\belemsiz GUN 115\\
+             \belemsiz SNI 120};
+    \fi
 
     \correctorMagnet{13.7}{DG 130};
     \if\getvalue{distances}1
@@ -82,22 +89,26 @@
 
     %Laser
     \draw[thick,-latex,dashed]
-        ({(13.7-13)/2+13},-2.25) --
+        ({(13.7-13)/2+13},-2.25+\BotLegyOFF) --
         ({(13.7-13)/2+13},-0.2) --
         (15,0);
 
     %Laser table
-    \BTV[-2.25]{14}{};
+    \BTV[-2.25+\BotLegyOFF]{14}{};
     \draw[thick, -latex, dashed]
-        (13,-2.25) -- (14,-2.25);
-    \node at (14.9,-2.25) {\belemsiz BTV125};
+        (13,-2.25+\BotLegyOFF) -- (14,-2.25+\BotLegyOFF);
+    \if\getvalue{elemnames}1
+        \node at (14.9,-2.25) {\belemsiz BTV125};
+    \fi
 
-    \draw[ultra thick] ({(13.7-13)/2+13-0.25/2}, -2.25-0.25/2) --
-                       ({(13.7-13)/2+13+0.25/2}, -2.25+0.25/2);
+    \draw[ultra thick] ({(13.7-13)/2+13-0.25/2}, -2.25-0.25/2+\BotLegyOFF) --
+                       ({(13.7-13)/2+13+0.25/2}, -2.25+0.25/2+\BotLegyOFF);
 
     %ICT 210
     \filldraw[purple] (12.95-0.1/2,-0.3) rectangle (12.95+0.1/2,0.3);
-    \node[rotate=-90,anchor=west] at (12.95,-0.7) {\belemsiz ICT 210};
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west] at (12.95,-0.7) {\belemsiz ICT 210};
+    \fi
 
     \BTV{12.35}{MTV 215};
     \if\getvalue{distances}1
@@ -117,10 +128,12 @@
     \filldraw[blue] (11.3, 0.2) rectangle (10.2,  0.25);
     \filldraw[blue] (11.3,-0.2) rectangle (10.2, -0.25);
 
-    \node[rotate=-90,anchor=west, align=left] at (10.2+1.1/2,-0.7)
-        {\belemsiz ACS 230\\
-         \belemsiz DB 230-S\\
-         \belemsiz SNG 230};
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west, align=left] at (10.2+1.1/2,-0.7)
+            {\belemsiz ACS 230\\
+             \belemsiz DB 230-S\\
+             \belemsiz SNG 230};
+    \fi
 
     \cBPM{9.9}{BPC 240}{0.15};
     \correctorMagnet{9.6}{DG 245};
@@ -128,8 +141,10 @@
 
     % ACS 250
     \filldraw[ultra thick, orange] (9.3,-0.15) rectangle (8.2,0.15);
-    \node[rotate=-90,anchor=west, align=left] at (8.2+1.1/2,-0.7) {\belemsiz ACS 250\\
-     \belemsiz SNG 250};
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west, align=left] at (8.2+1.1/2,-0.7) {\belemsiz ACS 250\\
+                                                                       \belemsiz SNG 250};
+    \fi
 
     \solRect{9.3}{0.2}{8.2}{0.3};
     \solRect{9.3}{-0.2}{8.2}{-0.3};
@@ -140,7 +155,9 @@
 
     % ACS 270
     \filldraw[ultra thick, orange] (7.3,-0.15) rectangle (6.2,0.15);
-    \node[rotate=-90,anchor=west] at (6.2+1.1/2,-0.7) {\belemsiz ACS 270};
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west] at (6.2+1.1/2,-0.7) {\belemsiz ACS 270};
+    \fi
 
     %\node at (10,-2.25) {\textbf{CALIFES S-band injector}};
 
@@ -168,9 +185,10 @@
     %%\node at (4.8,-2.25) {\belemsiz EOS laser};
     %\node at (3.9,-2.25) {\textbf{Electro-Optical Sampling}};
     \filldraw[purple!70] (3.0,-0.4) rectangle (3.15,0.4);
-    \node[rotate=-90,anchor=west,align=left] at (3.075,-0.7)
-        {\belemsiz EOS};
-    
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west,align=left] at (3.075,-0.7)
+            {\belemsiz EOS};
+    \fi
 
     \cBPM{2.7}{BPC 380}{0.15};
     \correctorMagnet{2.4}{DG 385};
@@ -183,7 +201,7 @@
     \BTV{2.0}{MTV 390};
 
     %% VESPER
-    
+
 
     \filldraw[gray,rotate around={-\VesperAngle:(\VesperX,\VesperY)}]
         (\VesperX-0.05, \VesperY-0.5) rectangle
@@ -205,7 +223,9 @@
         (\VesperICTX-0.1/2, \VesperICTY-0.3) rectangle
         (\VesperICTX+0.1/2, \VesperICTY+0.3);
 
-    \node[rotate=-90,anchor=west] at (\VesperICTX,\VesperICTY-0.7) {\belemsiz ICT 430};
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west] at (\VesperICTX,\VesperICTY-0.7) {\belemsiz ICT 430};
+    \fi
 
     \pgfmathsetmacro{\VesperBTVbX}{-0.5};
     \pgfmathsetmacro{\VesperBTVbY}{(\VesperStart-\VesperBTVbX)*tan(\VesperAngle)};

@@ -4,17 +4,23 @@
 
 \begin{tikzpicture}
 
+    \if\getvalue{elemnames}1
+        \pgfmathsetmacro{\BotLegyOFF}{0.0};
+    \else
+        \pgfmathsetmacro{\BotLegyOFF}{1.3};
+    \fi
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% GREEN Areas to indicate experiments
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     %BEAM INSTRUMENTATION TEST STAND AREA
     \filldraw[green] (11.3,-0.4) rectangle (13.7,0.4);
-    \node at ({(11.3+13.7)/2},-2.25) {\textbf{BI test area}};
+    \node at ({(11.3+13.7)/2},-2.25+\BotLegyOFF) {\textbf{BI test area}};
 
     %CLIC test area
     \filldraw[green] (10.9,-0.5) rectangle (6.55,0.5);
-    \node at ({(10.3+7.8)/2},-2.25) {\textbf{CLIC test area}};
+    \node at ({(10.3+7.8)/2},-2.25+\BotLegyOFF) {\textbf{CLIC test area}};
 
     %IN-AIR table
     \filldraw[green] (-0.6,-0.5) rectangle (0.5,0.5);
@@ -22,8 +28,8 @@
 
     % PLASMA LENS
     \filldraw[green] (3.45,-0.7) rectangle (4.6,0.7);
-    \node at (4.3,-2.25) {\textbf{Plasma lens}};
-    
+    \node at (4.3,-2.25+\BotLegyOFF) {\textbf{Plasma lens}};
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -55,8 +61,10 @@
     \BTV{13.3}{BTV 545};
 
     \filldraw[purple] (12.7+0.15,0.15) rectangle (12.7-0.15,-0.15);
-    \node[rotate=-90,anchor=west] at (12.7,-0.7)
-        {\belemsiz WCM 550};
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west] at (12.7,-0.7)
+            {\belemsiz WCM 550};
+    \fi
 
     \correctorMagnet{12.4}{DJ 590};
     \if\getvalue{distances}1
@@ -66,8 +74,10 @@
     \iBPM{12.0} {BPM 595}; %{BPM 560};
 
     \filldraw[purple] (11.5+0.15,0.15) rectangle (11.5-0.15,-0.15);
-    \node[rotate=-90,anchor=west] at (11.5,-0.7)
-        {\belemsiz BPR 600};
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west] at (11.5,-0.7)
+            {\belemsiz BPR 600};
+    \fi
 
     %\cBPM{11.1}{BPC 565}{0.15};
     \cBPM{11.1}{BPC 610}{0.15};
@@ -78,14 +88,18 @@
     \fi
 
     \filldraw[ultra thick, orange] (10.1,-0.15) rectangle (9.7,0.15);
-    \node[rotate=-90,anchor=west] at (9.9,-0.7)
-        {\belemsiz ACS 640};
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west] at (9.9,-0.7)
+            {\belemsiz ACS 640};
+    \fi
 
     \filldraw[ultra thick, orange] (9.6,-0.15) rectangle (9.2,0.15);
     \filldraw[purple] (9.53,-0.4) rectangle (9.48,0.4);
-    \node[rotate=-90,anchor=west,align=left] at (9.4,-0.7)
-        {\belemsiz WFM 645\\[-0.5em]
-         \belemsiz ACS 650};
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west,align=left] at (9.4,-0.7)
+            {\belemsiz WFM 645\\[-0.5em]
+             \belemsiz ACS 650};
+    \fi
 
     \cBPM{9.0}{BPC 660}{0.1};
     \cBPM{8.7}{BPC 670}{0.1};
@@ -151,7 +165,7 @@
     \pgfmathsetmacro{\InAirY}{(\InAirStart+0.6)*tan(\InAirAngle)};
 
     \draw[-latex,ultra thick] (\InAirStart,0)--(-0.6,\InAirY);
-    
+
     %\kickerHV[0]{\InAirStart}{BHB 900}{1}{blue};
     \dipole[0]{\InAirStart}{BHB 900}{{-\InAirAngle/2}};
 
@@ -173,7 +187,9 @@
 
     %ICT 210
     \filldraw[purple] (0.5-0.1/2,-0.3) rectangle (0.5+0.1/2,0.3);
-    \node[anchor=south] at (0.5,0.3) {\belemsiz ICT 915};
+    \if\getvalue{elemnames}1
+        \node[anchor=south] at (0.5,0.3) {\belemsiz ICT 915};
+    \fi
 
     %% RF SYSTEM
     \filldraw[orange!65] (11.5,0.7) -- (11.5+0.5,1.7) -- (11.5-0.5,1.7) -- cycle;
