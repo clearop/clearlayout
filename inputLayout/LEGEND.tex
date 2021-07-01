@@ -1,20 +1,21 @@
 %% TIKZ DRAWING OF CALIFES ELEMENTS
 %% TO BE INCLUDED INTO A LATEX DOCUMENT
 %% K. Sjobak, 2018
+%% L.A. Dyks 2021 - changed lement colour boxes 
 
 \begin{tikzpicture}
     
-    \filldraw[blue] (-5.5,1.) rectangle (-3.5,0.5);
-    \node at (-4.5,0.75) {\textbf{Magnet}};
+    \filldraw[blue] (-6.0,1.) rectangle (-5.5,0.5);
+    \node[align=left,anchor=west] at (-5.4,0.75) {Magnet};
 
-    \filldraw[orange] (-5.5,0.0) rectangle (-3.5,0.5);
-    \node at (-4.5,0.25) {\textbf{RF element}};
+    \filldraw[orange] (-6.0,0.0) rectangle (-5.5,0.5);
+    \node[align=left,anchor=west] at (-5.4,0.25) {RF element};
     
-    \filldraw[purple] (-5.5,0.0) rectangle (-3.5,-0.5);
-    \node at (-4.5,-0.25) {\textbf{Instrument}};
+    \filldraw[purple] (-6.0,0.0) rectangle (-5.5,-0.5);
+    \node[align=left,anchor=west] at (-5.4,-0.25) {Instrument};
 
-    \filldraw[green] (-5.5,-0.5) rectangle (-3.5,-1.);
-    \node at (-4.5,-0.75) {\textbf{Experiment}};
+    \filldraw[green] (-6.0,-0.5) rectangle (-5.5,-1.);
+    \node[align=left,anchor=west] at (-5.4,-0.75) {Experiment};
     
     \solRect{-3.0}{0.5}{-2.0}{0.7};
     \solRect{-3.0}{-0.5}{-2.0}{-0.7};
