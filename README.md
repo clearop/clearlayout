@@ -3,7 +3,9 @@ Layout of CLEAR beamlines
 > Original code and layout: K. Sjobak, 2018
 > Minor modifications:      D. Gamba,  2020
 > Multiple versions:        K. Sjobak, 2020
-> Further Modifications:    L.A. Dyks, 2021
+> Removed CLIC CBPMs,
+  in-air iBPM, cleanup:     L.A. Dyks, 2021
+
 ## Content
 
 - layout.tex:            Main LaTeX file for figure compilation (split beamline)
