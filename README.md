@@ -3,6 +3,8 @@ Layout of CLEAR beamlines
 > Original code and layout: K. Sjobak, 2018
 > Minor modifications:      D. Gamba,  2020
 > Multiple versions:        K. Sjobak, 2020
+> Removed CLIC CBPMs,
+  in-air iBPM, cleanup:     L.A. Dyks, 2021
 
 ## Content
 
