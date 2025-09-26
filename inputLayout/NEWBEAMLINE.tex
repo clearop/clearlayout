@@ -1,0 +1,268 @@
+%% TIKZ DRAWING OF CLEAR EXPERIMENTAL BEAMLINE 1 ELEMENTS
+%% TO BE INCLUDED INTO A LATEX DOCUMENT
+%% INSIDE A TIKZPICTURE ENVIRONMENT
+%% A. Gilardi 2025
+
+
+%% Source position 
+
+\pgfmathsetmacro{\SrcX}{16} 
+\pgfmathsetmacro{\SrcY}{-3} 
+
+% Define outgoing angle (use your NewBemLine angle) 
+\pgfmathsetmacro{\SrcAngle}{22}  % degrees 
+\pgfmathsetmacro{\BreakX}{8.6}    % where it straightens out
+\pgfmathsetmacro{\BreakY}{\SrcY + (\SrcX-\BreakX)*tan(\SrcAngle)}  % <-- missing
+
+    \if\getvalue{elemnames}1
+        \pgfmathsetmacro{\BotLegyOFF}{0.0};
+    \else
+        \pgfmathsetmacro{\BotLegyOFF}{1.3};
+    \fi
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% GREEN Areas to indicate experiments
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    %In Vacuum test area
+    \filldraw[green] (4.75,-0.5) rectangle (3.5,0.5);
+    %\node at ({3},-2.5+\BotLegyOFF) {\textbf{In Vacuum test area}};
+
+
+    %IN-AIR table
+    \filldraw[green] (-0.6,-0.5) rectangle (0.2,0.5);
+    %\node[align=left,anchor=west] at (-0.7,-1.4) {\textbf{In-Air}\\ \textbf{test area II}};
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    % FINAL DUMP
+    \if\getvalue{elemnames}1
+        \filldraw[gray] (-0.6,-0.5) rectangle (-0.5,0.55);
+    \else
+        \filldraw[gray] (-0.6,-0.55) rectangle (-0.5,0.5);
+    \fi
+
+
+
+    % Dashed part first (no arrow)
+    \draw[ultra thick, dashed] (\SrcX,\SrcY) --
+   ($(\SrcX,\SrcY)!0.6!(\BreakX,\BreakY)$);
+
+    % Solid continuation (still no arrow)
+    \draw[ultra thick]
+   ($(\SrcX,\SrcY)!0.6!(\BreakX,\BreakY)$) --
+   (\BreakX,\BreakY);
+
+    % Continue straight horizontal beamline from the break point, solid arrow
+    \draw[->, ultra thick] (\BreakX,\BreakY) -- (-0.5,\BreakY);
+
+
+    % direction of the diagonal (either works visually)
+    \pgfmathsetmacro{\BeamDir}{-\SrcAngle}      % or: 180-\SrcAngle
+    % --------------------------------------------
+
+
+
+
+
+
+
+    \pgfmathsetmacro{\BPMx}{9.2}
+    \pgfmathsetmacro{\BPMy}{\SrcY + (\SrcX-\BPMx)*tan(\SrcAngle)}
+    \begin{scope}[shift={(0,\BPMy)}, rotate around={\BeamDir:(\BPMx,0)}] % BeamDir = -\SrcAngle
+      \iBPM{\BPMx}{BPM 185};
+    \end{scope}
+
+    \pgfmathsetmacro{\CORx}{9.6}
+    \pgfmathsetmacro{\CORy}{\SrcY + (\SrcX-\CORx)*tan(\SrcAngle)}
+    \begin{scope}[shift={(0,\CORy)}, rotate around={\BeamDir:(\CORx,0)}]
+    \correctorMagnet{\CORx}{DJ 175};
+    \end{scope}
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (9.8, 1.0) {\belemsiz DJ 175};
+    \fi
+
+    % --- Quadrupole F on the diagonal at x = 12.20 ---
+    \pgfmathsetmacro{\QFx}{10.2}
+    \pgfmathsetmacro{\QFy}{\SrcY + (\SrcX-\QFx)*tan(\SrcAngle)}
+    \begin{scope}[shift={(0,\QFy)}, rotate around={\BeamDir:(\QFx,0)}]
+      \lensF{\QFx}{QFG 170};
+    \end{scope}
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (10.4, 0.9) {\belemsiz QFG 170};
+    \fi
+
+    \pgfmathsetmacro{\SXx}{10.90}
+    \pgfmathsetmacro{\SXy}{\SrcY + (\SrcX-\SXx)*tan(\SrcAngle)}
+    \sextupole[\SXy]{\SXx}{XLA 165}{\BeamDir}
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (11.10, 0.60) {\belemsiz XLA 165};
+    \fi
+
+    \pgfmathsetmacro{\QDx}{12.40}
+    \pgfmathsetmacro{\QDy}{\SrcY + (\SrcX-\QDx)*tan(\SrcAngle)}
+    \begin{scope}[shift={(0,\QDy)}, rotate around={\BeamDir:(\QDx,0)}]
+      \lensD{\QDx}{QDG 155};
+    \end{scope}
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (12.6, -0.0) {\belemsiz QFG 130};
+    \fi
+
+    \pgfmathsetmacro{\CORx}{12.9}
+    \pgfmathsetmacro{\CORy}{\SrcY + (\SrcX-\CORx)*tan(\SrcAngle)}
+    \begin{scope}[shift={(0,\CORy)}, rotate around={\BeamDir:(\CORx,0)}]
+    \correctorMagnet{\CORx}{DJ 145};
+    \end{scope}
+    \if\getvalue{elemnames_newbeamline}1
+       \node[rotate=-90] at (13.1, -0.20) {\belemsiz DJ 145};
+    \fi
+
+    \pgfmathsetmacro{\SXx}{13.40}
+    \pgfmathsetmacro{\SXy}{\SrcY + (\SrcX-\SXx)*tan(\SrcAngle)}
+    \sextupole[\SXy]{\SXx}{XLA 135}{\BeamDir}
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (13.60, -0.40) {\belemsiz XLA 135};
+    \fi
+
+    % --- Quadrupole F on the diagonal at x = 12.20 ---
+    \pgfmathsetmacro{\QFx}{14.0}
+    \pgfmathsetmacro{\QFy}{\SrcY + (\SrcX-\QFx)*tan(\SrcAngle)}
+    \begin{scope}[shift={(0,\QFy)}, rotate around={\BeamDir:(\QFx,0)}]
+      \lensF{\QFx}{QFG 130};
+    \end{scope}
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (14.20, -0.60) {\belemsiz QFG 130};
+    \fi
+
+    % --- MTV on the diagonal at x = 11.40 ---
+    \pgfmathsetmacro{\MTVx}{15.00}
+    \pgfmathsetmacro{\MTVy}{\SrcY + (\SrcX-\MTVx)*tan(\SrcAngle)}
+     \begin{scope}[shift={(0,\BPMy)}, rotate around={\BeamDir:(\BPMx,0)}] % BeamDir = -\SrcAngle
+        \BTV{\MTVx}{BTV 120};
+    \end{scope}
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (14.70, -0.90) {\belemsiz BTV 120};
+    \fi
+    
+   % --- BPM on the diagonal at x = 12.00 ---
+    \pgfmathsetmacro{\BPMx}{15.40}
+    \pgfmathsetmacro{\BPMy}{\SrcY + (\SrcX-\BPMx)*tan(\SrcAngle)}
+    \begin{scope}[shift={(0,\BPMy)}, rotate around={\BeamDir:(\BPMx,0)}] % BeamDir = -\SrcAngle
+      \iBPM{\BPMx}{BPM 105};
+    \end{scope}
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (15.40, -1.3) {\belemsiz BPM 105};
+    \fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    \dipole[0]{8.55}{BHB 200}{{0}};
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (8.55,1.6) {\belemsiz BHB 200};
+    \fi
+
+    \BTV{7.95}{BTV 305};
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (7.95,1.6) {\belemsiz BTV 305};
+    \fi
+    \correctorMagnet{7.5}{DHJ 310};
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (7.5,1.6) {\belemsiz DHJ 310};
+    \fi
+    \if\getvalue{distances}1
+        \node at (8.0,0.9) {\belemsiz 29.31~m};
+    \fi
+    
+    \lensF{7.1}{QFG 315};
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (7.1,1.6) {\belemsiz QFG 315};
+    \fi
+    \lensD{6.7}{QDG 320};
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (6.7,1.6) {\belemsiz QFG 320};
+    \fi
+    \lensF{6.3}{QFG 325};
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (6.3,1.6) {\belemsiz QFG 325};
+    \fi
+    \if\getvalue{distances}1
+        \node at (5.95,0.9) {\belemsiz 30.62~m};
+    \fi
+    
+
+    \iBPM{5.9}{BPM 330}{0.15};
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (5.9,1.6) {\belemsiz BPM 330};
+    \fi
+    \correctorMagnet{5.6}{DHJ 335};
+    \if\getvalue{distances}1
+        \node at (5.2,1.15) {\belemsiz 31.66~m};
+    \fi
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (5.6,1.6) {\belemsiz DHJ 335};
+    \fi
+
+    \BTV{5.1}{BTV 420};
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (5.1,1.6) {\belemsiz BTV 420};
+    \fi
+
+    \correctorMagnet{2.6}{DHJ 505};
+    \if\getvalue{distances}1
+        \node at (2.95,0.9) {\belemsiz 33.38~m};
+    \fi
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (2.6,1.6) {\belemsiz DHJ 505};
+    \fi
+
+    \iBPM{2.2}{BPM 510};
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (2.2,1.6) {\belemsiz BPM 510};
+    \fi
+        \BTV{1.65}{BTV 520};
+    \if\getvalue{distances}1
+        \node at (3.9,1.15) {\belemsiz 32.53~m};
+    \fi
+    \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (1.65,1.6) {\belemsiz BTV 520};
+    \fi
+    
+
+    \lensD{1.2}{QFG 525};
+        \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (1.2,1.6) {\belemsiz QFG 525};
+    \fi
+    \lensF{0.8}{QDG 535};
+        \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (0.8,1.6) {\belemsiz QDG 535};
+    \fi
+    \lensD{0.4}{QFG 525};
+        \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (0.4,1.6) {\belemsiz QFG 525};
+    \fi
+
+        
+    %% IN-AIR TABLE INSTRUMENTATION
+    \BTV{-0.1}{BTV 600};
+        \if\getvalue{elemnames_newbeamline}1
+        \node[rotate=-90] at (-0.1,1.6) {\belemsiz BTV 600};
+    \fi
+    %ICT 
+    %\filldraw[purple] (0.1,-0.3) rectangle (0.2,0.3);
+    %\if\getvalue{elemnames}1
+    %    \node[anchor=south] at (0.3,0.45) {\belemsiz ICT 915};
+    %\fi
