@@ -5,7 +5,7 @@
 %\usepackage{showframe} % DO NOT COMBINE WITH TIKZexternalize
 
 \usepackage{tikz}
-\usetikzlibrary{calc}
+
 % \usepackage{etoolbox}
 
 %Set/get variables, see https://tex.stackexchange.com/a/37113
@@ -39,17 +39,14 @@ See README.md for more information.
 
 \setvalue{unbroken = 0} %Do draw VESPER dipole in EXPERIMENTAL1 etc.
 
+%\newpage
+\subsection{All text ON, show legend}
 \begin{center}
-
-  \setvalue{distances = 0}
-  \setvalue{elemnames = 0}
-  \setvalue{elemnames_newbeamline = 1}
+  \setvalue{distances = 1}
+  \setvalue{elemnames = 1}
   \setvalue{auxElems  = 1}
-   \begin{tikzpicture}
-   \input{./inputLayout/CALIFES.tex}
-  \end{tikzpicture}
   \begin{tikzpicture}
-    \input{./inputLayout/NEWBEAMLINE.tex}
+    \input{./inputLayout/CALIFES.tex}
   \end{tikzpicture}
   \begin{tikzpicture}
     \input{./inputLayout/EXPERIMENTAL1.tex}
@@ -58,5 +55,34 @@ See README.md for more information.
 \end{center}
 \noindent\makebox[\linewidth]{\rule{\linewidth}{1.0pt}}
 
+%\newpage
+\subsection{Simplified (no distances or element names)}
+\begin{center}
+  \setvalue{distances = 0}
+  \setvalue{elemnames = 0}
+  \setvalue{auxElems  = 1}
+  \begin{tikzpicture}
+    \input{./inputLayout/CALIFES.tex}
+  \end{tikzpicture}
+  \begin{tikzpicture}
+    \input{./inputLayout/EXPERIMENTAL1.tex}
+  \end{tikzpicture}
+\end{center}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{1.0pt}}
+
+\newpage
+\subsection{Beamline only (no distances, element names, RF, or laser)}
+\begin{center}
+  \setvalue{distances = 0}
+  \setvalue{elemnames = 0}
+  \setvalue{auxElems  = 0}
+  \begin{tikzpicture}
+    \input{./inputLayout/CALIFES.tex}
+  \end{tikzpicture}
+  \begin{tikzpicture}
+    \input{./inputLayout/EXPERIMENTAL1.tex}
+  \end{tikzpicture}
+\end{center}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{1.0pt}}
 
 \end{document}

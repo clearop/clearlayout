@@ -5,12 +5,7 @@
 
     % Initialise some variables: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \pgfmathsetmacro{\VesperStart}{1.5}; %Center of the dipole (X)
-    \pgfmathsetmacro{\NewBemStart}{\VesperStart}    % split at same X as VESPER
-    \pgfmathsetmacro{\NewBemAngle}{22}   % mirror angle (positive)
-    \pgfmathsetmacro{\NewBemX}{-1}
-    \pgfmathsetmacro{\NewBemY}{(\NewBemStart-\NewBemX)*tan(\NewBemAngle)}
-
-    \pgfmathsetmacro{\VesperAngle}{-15.0};
+    \pgfmathsetmacro{\VesperAngle}{-22.0};
     %Arrow end point
     \pgfmathsetmacro{\VesperX}{-1};
     \pgfmathsetmacro{\VesperY}{(\VesperStart-\VesperX)*tan(\VesperAngle)};
@@ -219,15 +214,6 @@
 
     \draw[->,ultra thick] (\VesperStart,0)--(\VesperX,\VesperY);
 
-    % Arrowed solid part (first segment)
-    \draw[->,ultra thick] (\NewBemStart,0) --
-   ($(\NewBemStart,0)!0.8!(\NewBemX,\NewBemY)$);
-
-    % Dashed continuation (second segment, no arrow)
-    \draw[ultra thick, dashed] 
-   ($(\NewBemStart,0)!0.6!(\NewBemX,\NewBemY)$) --
-   (\NewBemX,\NewBemY);
-
     %\kickerHV[0]{\VesperStart}{BHB 400}{1}{blue};
     \dipole[0]{\VesperStart}{BHB 400}{{-\VesperAngle/2}};
 
@@ -307,20 +293,3 @@
 %%% mode: latex
 %%% TeX-master: "../layout.tex"
 %%% End:
-
-%% =========================
-%% NEWBEMLINE 
-%% =========================
-% --- BPM on NewBemLine (same style as other BPMs) ---
-%\pgfmathsetmacro{\NewBemBPMaX}{0.2};
-%\pgfmathsetmacro{\NewBemBPMaY}{(\NewBemStart-\NewBemBPMaX)*tan(\NewBemAngle)};
-
-% Draw BPM symbol, shifted to the branch Y. Pass empty label to suppress default text.
-%\begin{scope}[shift={(0,\NewBemBPMaY)}]
-%  \iBPM{\NewBemBPMaX}{}{0.15};
-%\end{scope}
-
-% Custom label above the element (only if names are enabled)
-%\if\getvalue{elemnames}1
-%  \node[anchor=south] at (\NewBemBPMaX,\NewBemBPMaY+0.30) {\belemsiz BPM 120};
-%\fi

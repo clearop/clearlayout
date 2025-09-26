@@ -128,28 +128,6 @@
     \draw[blue] (#3,#2) -- (#1,#4);
 }
 
-
-% ARG 1: Y pos (default = 0.0)
-% ARG 2: X pos
-% ARG 3: text
-% ARG 4: rotation angle (degrees)
-\newcommand{\sextupole}[4][0.0]{%
-  \begin{scope}[shift={(#2,#1)}]             % move to (X,Y)
-    \begin{scope}[rotate=#4, yscale=2.4] % align with beam, then stretch in Y
-      \foreach \ang in {0,60,120}{%
-        \begin{scope}[rotate=\ang]
-          \filldraw[orange!75] (-0.25,-0.08) rectangle (0.25,0.08);
-        \end{scope}
-      }
-    \end{scope}
-  \end{scope}
-  \if\getvalue{elemnames}1
-    \node[rotate=-90,anchor=west] at (#2,#1-0.7) {\belemsiz #3};
-  \fi
-}
-
-
-
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../layout.tex"
