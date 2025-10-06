@@ -1,0 +1,82 @@
+\documentclass{article}
+\pagestyle{empty}
+
+% --- A0 LANDSCAPE PAGE SETUP ---
+\usepackage[a0paper,landscape,margin=2cm]{geometry}
+% Adjust margin as needed (1–3 cm typical for posters)
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{pgfkeys}
+
+% --- VARIABLE MACROS ---
+\newcommand{\setvalue}[1]{\pgfkeys{/variables/#1}}
+\newcommand{\getvalue}[1]{\pgfkeysvalueof{/variables/#1}}
+\newcommand{\declare}[1]{%
+  \pgfkeys{
+    /variables/#1.is family,
+    /variables/#1.unknown/.style = {\pgfkeyscurrentpath/\pgfkeyscurrentname/.initial = ##1}
+  }%
+}
+\declare{}
+
+% --- LOAD YOUR CUSTOM MACROS ---
+\input{./inputLayout/BEAMLINE_TIKZMACROS.tex}
+
+% --- DOCUMENT BODY ---
+\begin{document}
+
+\noindent\makebox[\linewidth]{\rule{\linewidth}{1pt}}
+
+\setvalue{unbroken = 0}
+
+\begin{center}
+  \setvalue{distances = 0}
+  \setvalue{elemnames = 1}
+  \setvalue{elemnames_newbeamline = 1}
+  \setvalue{auxElems = 1}
+
+    \resizebox{\textwidth}{!}{
+      \begin{tikzpicture}
+        \input{./inputLayout/CALIFES.tex}
+      \end{tikzpicture}
+    }
+    \resizebox{\textwidth}{!}{
+        \begin{tikzpicture}
+        \input{./inputLayout/EXPERIMENTAL1.tex}
+      \end{tikzpicture}
+    }
+\end{center}
+
+
+\newpage
+\begin{center}
+  \setvalue{distances = 0}
+  \setvalue{elemnames = 0}
+  \setvalue{elemnames_newbeamline = 1}
+  \setvalue{auxElems = 1}
+    \resizebox{\textwidth}{!}{
+        \begin{tikzpicture}
+        \input{./inputLayout/NEWBEAMLINE.tex}
+      \end{tikzpicture}
+    }
+    
+\end{center}
+
+\newpage
+
+\noindent\makebox[\linewidth]{\rule{\linewidth}{1pt}}
+
+\begin{center}
+  \setvalue{distances = 0}
+  \setvalue{elemnames = 0}
+  \setvalue{elemnames_newbeamline = 1}
+  \setvalue{auxElems = 1}
+    \resizebox{\textwidth}{!}{
+        \input{./inputLayout/LEGEND.tex}
+    }
+\end{center}
+
+\noindent\makebox[\linewidth]{\rule{\linewidth}{1pt}}
+
+\end{document}

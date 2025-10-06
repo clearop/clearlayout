@@ -1,8 +1,10 @@
 %% TIKZ MACROS to generate beamline layouts
 %% TO BE INCLUDED INTO A LATEX DOCUMENT
-%% K. Sjobak, 2018
+%% K. Sjobak, 2018 
+%% A. Gilardi 2025
 
 \usepackage{calc}
+\usetikzlibrary{arrows.meta}
 
 \newcommand{\belemsiz}{\footnotesize}
 
@@ -127,6 +129,54 @@
     \draw[blue] (#1,#2) -- (#3,#4);
     \draw[blue] (#3,#2) -- (#1,#4);
 }
+
+
+% ARG 1: Y pos (default = 0.0)
+% ARG 2: X pos
+% ARG 3: text
+% ARG 4: rotation angle (degrees)
+\newcommand{\sextupole}[4][0.0]{%
+  \begin{scope}[shift={(#2,#1)}]             % move to (X,Y)
+    \begin{scope}[rotate=#4, yscale=2.4] % align with beam, then stretch in Y
+      \foreach \ang in {0,60,120}{%
+        \begin{scope}[rotate=\ang]
+          \filldraw[cyan] (-0.25,-0.08) rectangle (0.25,0.08);
+        \end{scope}
+      }
+    \end{scope}
+  \end{scope}
+  \if\getvalue{elemnames}1
+    \node[rotate=-90,anchor=west] at (#2,#1-0.7) {\belemsiz #3};
+  \fi
+}
+
+\newcommand{\prescatt}[3][0.0]{
+    \draw[ultra thick, brown] (#2,#1) circle (0.3);
+    \draw[ultra thick, brown] (#2-0.15,#1-0.15) -- (#2+0.15,#1+0.15);
+    \draw[ultra thick, brown] (#2-0.15,#1+0.15) -- (#2+0.15,#1-0.15);
+
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west,align=left] at (#2,#1-0.7) {\belemsiz #3};
+    \fi
+}
+
+\newcommand{\scatt}[3][0.0]{
+    \def\radius{0.3}
+    \def\trianglesize{0.18}
+    \draw[ultra thick, brown] (#2,#1) circle (\radius);
+
+    % Triangle with tip pointing RIGHT
+    \draw[ultra thick, brown] 
+        (#2+\trianglesize,#1) --  % right point (tip)
+        (#2-\trianglesize*0.5,#1+\trianglesize*0.866) -- % top-left
+        (#2-\trianglesize*0.5,#1-\trianglesize*0.866) -- % bottom-left
+        cycle;
+
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west,align=left] at (#2,#1-0.7) {\belemsiz #3};
+    \fi
+}
+
 
 %%% Local Variables:
 %%% mode: latex

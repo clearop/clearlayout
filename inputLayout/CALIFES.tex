@@ -1,11 +1,17 @@
 %% TIKZ DRAWING OF CALIFES ELEMENTS
 %% TO BE INCLUDED INTO A LATEX DOCUMENT
 %% INSIDE A TIKZPICTURE ENVIRONMENT
-%% K. Sjobak, 2018--2020, D. Gamba 2020, L.A. Dyks 2021
+%% K. Sjobak, 2018--2020, D. Gamba 2020, L.A. Dyks 2021, 
+%% A. Gilardi 2025
 
     % Initialise some variables: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \pgfmathsetmacro{\VesperStart}{1.5}; %Center of the dipole (X)
-    \pgfmathsetmacro{\VesperAngle}{-22.0};
+    \pgfmathsetmacro{\NewBemStart}{\VesperStart}    % split at same X as VESPER
+    \pgfmathsetmacro{\NewBemAngle}{22}   % mirror angle (positive)
+    \pgfmathsetmacro{\NewBemX}{-1}
+    \pgfmathsetmacro{\NewBemY}{(\NewBemStart-\NewBemX)*tan(\NewBemAngle)}
+
+    \pgfmathsetmacro{\VesperAngle}{-15.0};
     %Arrow end point
     \pgfmathsetmacro{\VesperX}{-1};
     \pgfmathsetmacro{\VesperY}{(\VesperStart-\VesperX)*tan(\VesperAngle)};
@@ -29,12 +35,15 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     %EOS table
-    \filldraw[green] (3.45, -0.5) rectangle (3.1,0.5);
-    \node at (3.3, -2.7+\BotLegyOFF) {\textbf{EOS}};
+    \filldraw[green] (3.55, -0.5) rectangle (3.2,0.5);
+    \node[above] at (3.45,0.95) {\tiny CAMEOS1};
+    \node[above] at (3.45,0.65) {\tiny CAMEOS2};
+    \node at (3.45, -2.7+\BotLegyOFF) {\textbf{EOS}};
 
     \filldraw[green,rotate around={-\VesperAngle:(\VesperTabX,\VesperTabY)}]
     (\VesperTabX-0.5, \VesperTabY-0.4) rectangle
     (\VesperTabX+0.5, \VesperTabY+0.4);
+    \node[above] at (\VesperTabX+0.6,0.95) {\tiny CAMVESPER1};
     %\node[rotate=-90,anchor=west] at (\VesperTabX,\VesperTabY-0.7) {\belemsiz VESPER};
     \node at (\VesperTabX+0.6, -2.7+\BotLegyOFF) {\textbf{VESPER}};
 
@@ -81,7 +90,7 @@
              \belemsiz SNI 120};
     \fi
 
-    \correctorMagnet{13.7}{DG 130};
+    \correctorMagnet{13.7}{D\%G 130};
     \if\getvalue{distances}1
         \node at (13.7,1) {\belemsiz 0.32~m};
     \fi
@@ -110,52 +119,57 @@
     \fi
 
     %ICT 210
-    \filldraw[purple] (12.95-0.1/2,-0.3) rectangle (12.95+0.1/2,0.3);
+    \filldraw[purple] (13.05-0.1/2,-0.3) rectangle (13.05+0.1/2,0.3);
     \if\getvalue{elemnames}1
-        \node[rotate=-90,anchor=west] at (12.95,-0.7) {\belemsiz ICT 210};
+        \node[rotate=-90,anchor=west] at (13.05,-0.7) {\belemsiz ICT 210};
     \fi
 
-    \BTV{12.35}{MTV 215};
+    \BTV{12.65}{MTV 215};
     \if\getvalue{distances}1
-        \node at (12.35,0.6) {\belemsiz 1.81~m};
+        \node at (12.65,0.6) {\belemsiz 1.81~m};
     \fi
 
-    \cBPM{11.8}{BPC 220}{0.15};
-    \correctorMagnet{11.5}{DG 225}; 
+    \cBPM{12.15}{BPC 220}{0.15};
+    \correctorMagnet{11.9}{D\%G 225}; 
     %\node at (11.5,1) {\belemsiz 2.18~m}; !Moved to the bottom, to be drawn on top of RF network
 
     %ACS 230
-    \filldraw[ultra thick, orange] (11.3,-0.15) rectangle (10.2,0.15);
+    \filldraw[ultra thick, orange] (11.65,-0.15) rectangle (10.55,0.15);
 
-    \solRect{11.3}{0.3}{10.2}{0.4}
-    \solRect{11.3}{-0.3}{10.2}{-0.4}
+    \solRect{11.65}{0.3}{10.55}{0.4}
+    \solRect{11.65}{-0.3}{10.55}{-0.4}
 
-    \filldraw[blue] (11.3, 0.2) rectangle (10.2,  0.25);
-    \filldraw[blue] (11.3,-0.2) rectangle (10.2, -0.25);
+    \filldraw[blue] (11.65, 0.2) rectangle (10.55,  0.25);
+    \filldraw[blue] (11.65,-0.2) rectangle (10.55, -0.25);
 
     \if\getvalue{elemnames}1
-        \node[rotate=-90,anchor=west, align=left] at (10.2+1.1/2,-0.7)
+        \node[rotate=-90,anchor=west, align=left] at (10.55+1.1/2,-0.7)
             {\belemsiz ACS 230\\
              \belemsiz DB 230-S\\
              \belemsiz SNG 230};
     \fi
 
-    \cBPM{9.9}{BPC 240}{0.15};
-    \correctorMagnet{9.6}{DG 245};
+    \BTV{10.15}{MTV 235};
+    \if\getvalue{distances}1
+        \node at (10.15,0.6) {\belemsiz 0.15~m};
+    \fi
+    
+    \cBPM{9.65}{BPC 240}{0.15};
+    \correctorMagnet{9.4}{D\%G 245};
     %\node at (9.6,1) {\belemsiz 7.33~m}; !Moved to bottom
 
     % ACS 250
-    \filldraw[ultra thick, orange] (9.3,-0.15) rectangle (8.2,0.15);
+    \filldraw[ultra thick, orange] (9.2,-0.15) rectangle (8.1,0.15);
     \if\getvalue{elemnames}1
-        \node[rotate=-90,anchor=west, align=left] at (8.2+1.1/2,-0.7) {\belemsiz ACS 250\\
+        \node[rotate=-90,anchor=west, align=left] at (8.1+1.1/2,-0.7) {\belemsiz ACS 250\\
                                                                        \belemsiz SNG 250};
     \fi
 
-    \solRect{9.3}{0.2}{8.2}{0.3};
-    \solRect{9.3}{-0.2}{8.2}{-0.3};
+    \solRect{9.2}{0.2}{8.1}{0.3};
+    \solRect{9.2}{-0.2}{8.1}{-0.3};
 
     \cBPM{7.9}{BPC 260}{0.15};
-    \correctorMagnet{7.6}{DG 265};
+    \correctorMagnet{7.6}{D\%G 265};
     %\node at (7.6,1) {\belemsiz 12.49~m}; !Moved to bottom
 
     % ACS 270
@@ -167,7 +181,7 @@
     %\node at (10,-2.25) {\textbf{CALIFES S-band injector}};
 
     \cBPM{5.9}{BPC 310}{0.15};
-    \correctorMagnet{5.6}{DG 320};
+    \correctorMagnet{5.6}{D\%G 320};
     \if\getvalue{distances}1
         \node at (5.6,1) {\belemsiz 17.70~m};
     \fi
@@ -189,21 +203,27 @@
     %\draw[-latex, dashed,thick] (4.8,-2) -- (4.8,-0.2) -- (3.0,-0.2) -- (3,-2);
     %%\node at (4.8,-2.25) {\belemsiz EOS laser};
     %\node at (3.9,-2.25) {\textbf{Electro-Optical Sampling}};
-    \filldraw[purple!70] (3.2,-0.4) rectangle (3.35,0.4);
+    \filldraw[purple!70] (3.3,-0.4) rectangle (3.45,0.4);
     \if\getvalue{elemnames}1
-        \node[rotate=-90,anchor=west,align=left] at (3.275,-0.7)
+        \node[rotate=-90,anchor=west,align=left] at (3.375,-0.7)
             {\belemsiz EOS};
     \fi
 
-    \cBPM{2.85}{BPC 380}{0.15};
-    \correctorMagnet{2.55}{DG 385};
+    \cBPM{2.975}{BPC 380}{0.15};
+    \correctorMagnet{2.675}{D\%G 385};
     %\node at (2.4,1) {\belemsiz 19.96~m};
     % unknown position after EOS installation
     \if\getvalue{distances}1
         \node at (2.55,1) {\belemsiz $\approx$20~m};
     \fi
 
-    \BTV{2.1}{MTV 390};
+    \BTV{2.25}{MTV 390};
+
+    %ICT 395
+    \filldraw[purple] (1.85-0.1/2,-0.3) rectangle (1.85+0.1/2,0.3);
+    \if\getvalue{elemnames}1
+        \node[rotate=-90,anchor=west] at (1.85,-0.7) {\belemsiz ICT 395};
+    \fi
 
     %% VESPER
 
@@ -214,8 +234,17 @@
 
     \draw[->,ultra thick] (\VesperStart,0)--(\VesperX,\VesperY);
 
-    %\kickerHV[0]{\VesperStart}{BHB 400}{1}{blue};
-    \dipole[0]{\VesperStart}{BHB 400}{{-\VesperAngle/2}};
+    % Arrowed solid part (first segment)
+    \draw[->,ultra thick] (\NewBemStart,0) --
+   ($(\NewBemStart,0)!0.8!(\NewBemX,\NewBemY)$);
+
+    % Dashed continuation (second segment, no arrow)
+    \draw[ultra thick, dashed] 
+   ($(\NewBemStart,0)!0.6!(\NewBemX,\NewBemY)$) --
+   (\NewBemX,\NewBemY);
+
+    %\kickerHV[0]{\VesperStart}{BHB 100}{1}{blue};
+    \dipole[0]{\VesperStart}{BHB 100}{{-\NewBemAngle/2}};
 
     \pgfmathsetmacro{\VesperBTVaX}{0.9};
     \pgfmathsetmacro{\VesperBTVaY}{(\VesperStart-\VesperBTVaX)*tan(\VesperAngle)};
@@ -239,33 +268,33 @@
     %% RF SYSTEM %%
     \if\getvalue{auxElems}1
         % MKS15
-        \filldraw[orange!65] (12.35,1.0+\RFyOFF) -- (12.35+0.5,2+\RFyOFF) -- (12.35-0.5,2+\RFyOFF) -- cycle;
-        \draw[-latex,orange!65,ultra thick] (12.35,1.75+\RFyOFF) -- (11.3,1.75+\RFyOFF) -- (11.3,0.4);
+        \filldraw[orange!65] (12.75,1.0+\RFyOFF) -- (12.75+0.5,2+\RFyOFF) -- (12.75-0.5,2+\RFyOFF) -- cycle;
+        \draw[-latex,orange!65,ultra thick] (12.75,1.75+\RFyOFF) -- (11.65,1.75+\RFyOFF) -- (11.65,0.4);
 
-        \filldraw[orange!50] (11.6,1.75+\RFyOFF) circle (0.25);
+        \filldraw[orange!50] (11.95,1.75+\RFyOFF) circle (0.25);
         \if\getvalue{elemnames}1
-            \node at (11.6,1.75+\RFyOFF) {\belemsiz $\Delta \Phi$};
+            \node at (11.95,1.75+\RFyOFF) {\belemsiz $\Delta \Phi$};
         \fi
 
-        \draw[-latex,orange!65,ultra thick] (12.35,1.75+\RFyOFF) -- (14.5+0.15/2,1.75+\RFyOFF) -- (14.5+0.15/2,0.4);
+        \draw[-latex,orange!65,ultra thick] (12.65,1.75+\RFyOFF) -- (14.8+0.15/2,1.75+\RFyOFF) -- (14.8+0.15/2,0.4);
 
-        \filldraw[orange!50] (14,1.75+\RFyOFF) circle (0.25);
+        \filldraw[orange!50] (14.3,1.75+\RFyOFF) circle (0.25);
         \if\getvalue{elemnames}1
-            \node at (14,1.75+\RFyOFF) {\belemsiz $\Delta \Phi$};
+            \node at (14.3,1.75+\RFyOFF) {\belemsiz $\Delta \Phi$};
         \fi
 
-        \filldraw[orange!50] (13.25,1.75+\RFyOFF) circle (0.25);
+        \filldraw[orange!50] (13.55,1.75+\RFyOFF) circle (0.25);
         \if\getvalue{elemnames}1
-            \node at (13.25,1.75+\RFyOFF) {\belemsiz $\Delta P$};
+            \node at (13.55,1.75+\RFyOFF) {\belemsiz $\Delta P$};
         \fi
 
         \if\getvalue{elemnames}1
-            \node[align=center,anchor=north] at (12.35,2+\RFyOFF) {\belemsiz MKS\\ \belemsiz 15};
+            \node[align=center,anchor=north] at (12.75,2+\RFyOFF) {\belemsiz MKS\\ \belemsiz 15};
         \fi
 
         % MKS11
         \filldraw[orange!65] (10.7,1.0+\RFyOFF) -- (10.7+0.5,2+\RFyOFF) -- (10.7-0.5,2+\RFyOFF) -- cycle;
-        \draw[orange!65, ultra thick, -latex] (10.5,1.75+\RFyOFF) -- (9.3,1.75+\RFyOFF) -- (9.3,0.3);
+        \draw[orange!65, ultra thick, -latex] (10.5,1.75+\RFyOFF) -- (9.2,1.75+\RFyOFF) -- (9.2,0.3);
         \draw[orange!65, ultra thick, -latex] (10.5,1.75+\RFyOFF) -- (7.3,1.75+\RFyOFF) -- (7.3,0.2);
 
         \if\getvalue{elemnames}1
@@ -293,3 +322,20 @@
 %%% mode: latex
 %%% TeX-master: "../layout.tex"
 %%% End:
+
+%% =========================
+%% NEWBEMLINE 
+%% =========================
+% --- BPM on NewBemLine (same style as other BPMs) ---
+%\pgfmathsetmacro{\NewBemBPMaX}{0.2};
+%\pgfmathsetmacro{\NewBemBPMaY}{(\NewBemStart-\NewBemBPMaX)*tan(\NewBemAngle)};
+
+% Draw BPM symbol, shifted to the branch Y. Pass empty label to suppress default text.
+%\begin{scope}[shift={(0,\NewBemBPMaY)}]
+%  \iBPM{\NewBemBPMaX}{}{0.15};
+%\end{scope}
+
+% Custom label above the element (only if names are enabled)
+% \if\getvalue{elemnames}1
+%  \node[anchor=south] at (\NewBemBPMaX,\NewBemBPMaY+0.30) {\belemsiz BPM 120};
+% \fi
