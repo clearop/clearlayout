@@ -5,8 +5,6 @@ Layout of CLEAR beamlines
 > Multiple versions:        K. Sjobak, 2020
 > Removed CLIC CBPMs,
   in-air iBPM, cleanup:     L.A. Dyks, 2021
-> Second beamline:          A. Gilardi, 2025
-> Updated and cleanup:      G. Tangari - S. Simonsson 2025
 
 ## Content
 

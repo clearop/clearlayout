@@ -2,7 +2,6 @@
 %% TO BE INCLUDED INTO A LATEX DOCUMENT
 %% INSIDE A TIKZPICTURE ENVIRONMENT
 %% A. Gilardi 2025
-%% G. Tangari - S. Simonsson 2025
 
 
 %% Source position 
@@ -68,6 +67,8 @@
     \pgfmathsetmacro{\BeamDir}{-\SrcAngle}      % or: 180-\SrcAngle
     % --------------------------------------------
 
+
+    
 
     \pgfmathsetmacro{\BPMx}{9.2}
     \pgfmathsetmacro{\BPMy}{\SrcY + (\SrcX-\BPMx)*tan(\SrcAngle)}
@@ -169,6 +170,15 @@
     \end{scope}
     
 
+
+
+
+
+
+
+
+
+
     
 
     \dipole[0]{8.55}{BHB 200}{{0}};
@@ -235,20 +245,20 @@
         \node at (2.95,0.9) {\belemsiz 33.38~m};
     \fi
     \if\getvalue{elemnames_newbeamline}1
-        \node[rotate=-90] at (3,1.8) {\belemsiz D\%J 505};
+        \node[rotate=-90] at (2.6,1.6) {\belemsiz D\%J 505};
     \fi
 
     \iBPM{2.7}{BPM 510};
     \if\getvalue{elemnames_newbeamline}1
-        \node[rotate=-90] at (2.7,1.85) {\belemsiz BPM 510};
+        \node[rotate=-90] at (2.2,1.6) {\belemsiz BPM 510};
     \fi
 
     \scatt{2.15}{BTV 520};
     \if\getvalue{distances}1
-        \node at (2.5,1.85) {\belemsiz 32.53~m};
+        \node at (3.9,1.15) {\belemsiz 32.53~m};
     \fi
         \if\getvalue{elemnames_newbeamline}1
-        \node[rotate=-90] at (2.15,1.85) {\belemsiz BTV 520};
+        \node[rotate=-90] at (1.65,1.6) {\belemsiz BTV 520};
     \fi
 
     \draw[ultra thick, brown, {Latex[length=2.5mm]}-{Latex[length=2.5mm]}]
@@ -258,15 +268,15 @@
 
     \lensF{1.7}{QFG 525};
         \if\getvalue{elemnames_newbeamline}1
-        \node[rotate=-90] at (1.7,1.6) {\belemsiz QFG 525};
+        \node[rotate=-90] at (1.2,1.6) {\belemsiz QFG 525};
     \fi
     \lensD{1.3}{QDG 535};
         \if\getvalue{elemnames_newbeamline}1
-        \node[rotate=-90] at (1.3,1.6) {\belemsiz QDG 535};
+        \node[rotate=-90] at (0.8,1.6) {\belemsiz QDG 535};
     \fi
     \lensF{0.9}{QFG 545};
         \if\getvalue{elemnames_newbeamline}1
-        \node[rotate=-90] at (0.9,1.6) {\belemsiz QFG 545};
+        \node[rotate=-90] at (0.4,1.6) {\belemsiz QFG 545};
     \fi
 
         
@@ -280,7 +290,4 @@
     \filldraw[purple] (0.4,-0.3) rectangle (0.5,0.3);
     \if\getvalue{elemnames}1
        \node[rotate = -90] at (0.45,-1.4) {\belemsiz (ICT 620)};
-    \fi
-            \if\getvalue{elemnames_newbeamline}1
-        \node[rotate=-90] at (0.45,1.6) {\belemsiz ICT 620};
     \fi

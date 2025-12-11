@@ -36,14 +36,11 @@
 
     %EOS table
     \filldraw[green] (3.55, -0.5) rectangle (3.2,0.5);
-    \node[above] at (3.45,0.95) {\tiny CAMEOS1};
-    \node[above] at (3.45,0.65) {\tiny CAMEOS2};
     \node at (3.45, -2.7+\BotLegyOFF) {\textbf{EOS}};
 
     \filldraw[green,rotate around={-\VesperAngle:(\VesperTabX,\VesperTabY)}]
     (\VesperTabX-0.5, \VesperTabY-0.4) rectangle
     (\VesperTabX+0.5, \VesperTabY+0.4);
-    \node[above] at (\VesperTabX+0.6,0.95) {\tiny CAMVESPER1};
     %\node[rotate=-90,anchor=west] at (\VesperTabX,\VesperTabY-0.7) {\belemsiz VESPER};
     \node at (\VesperTabX+0.6, -2.7+\BotLegyOFF) {\textbf{VESPER}};
 
@@ -90,7 +87,7 @@
              \belemsiz SNI 120};
     \fi
 
-    \correctorMagnet{13.7}{D\%G 130};
+    \correctorMagnet{13.7}{DG 130};
     \if\getvalue{distances}1
         \node at (13.7,1) {\belemsiz 0.32~m};
     \fi
@@ -130,7 +127,7 @@
     \fi
 
     \cBPM{12.15}{BPC 220}{0.15};
-    \correctorMagnet{11.9}{D\%G 225}; 
+    \correctorMagnet{11.9}{DG 225}; 
     %\node at (11.5,1) {\belemsiz 2.18~m}; !Moved to the bottom, to be drawn on top of RF network
 
     %ACS 230
@@ -155,7 +152,7 @@
     \fi
     
     \cBPM{9.65}{BPC 240}{0.15};
-    \correctorMagnet{9.4}{D\%G 245};
+    \correctorMagnet{9.4}{DG 245};
     %\node at (9.6,1) {\belemsiz 7.33~m}; !Moved to bottom
 
     % ACS 250
@@ -169,7 +166,7 @@
     \solRect{9.2}{-0.2}{8.1}{-0.3};
 
     \cBPM{7.9}{BPC 260}{0.15};
-    \correctorMagnet{7.6}{D\%G 265};
+    \correctorMagnet{7.6}{DG 265};
     %\node at (7.6,1) {\belemsiz 12.49~m}; !Moved to bottom
 
     % ACS 270
@@ -181,7 +178,7 @@
     %\node at (10,-2.25) {\textbf{CALIFES S-band injector}};
 
     \cBPM{5.9}{BPC 310}{0.15};
-    \correctorMagnet{5.6}{D\%G 320};
+    \correctorMagnet{5.6}{DG 320};
     \if\getvalue{distances}1
         \node at (5.6,1) {\belemsiz 17.70~m};
     \fi
@@ -210,7 +207,7 @@
     \fi
 
     \cBPM{2.975}{BPC 380}{0.15};
-    \correctorMagnet{2.675}{D\%G 385};
+    \correctorMagnet{2.675}{DG 385};
     %\node at (2.4,1) {\belemsiz 19.96~m};
     % unknown position after EOS installation
     \if\getvalue{distances}1

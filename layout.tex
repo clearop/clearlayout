@@ -21,8 +21,8 @@
 \declare{} %Setup the /variables directory
 
 % set up externalization (COMMENT OUT FOR DEBUGGING!)
-\usetikzlibrary{external}
-\tikzexternalize[prefix=./outputLayout/]
+%\usetikzlibrary{external}
+%\tikzexternalize[prefix=./outputLayout/]
 
 % load macros
 \input{./inputLayout/BEAMLINE_TIKZMACROS.tex}
@@ -37,13 +37,13 @@ See README.md for more information.
 
 \noindent\makebox[\linewidth]{\rule{\linewidth}{1.0pt}}
 
-\setvalue{unbroken = 0} %Do draw VESPER dipole in EXPERIMENTAL1 etc.
+\setvalue{unbroken = 1} %Do draw VESPER dipole in EXPERIMENTAL1 etc.
 
 \begin{center}
 
   \setvalue{distances = 0}
-  \setvalue{elemnames = 0}
-  \setvalue{elemnames_newbeamline = 1}
+  \setvalue{elemnames = 1}
+  % \setvalue{elemnames_newbeamline = 1}
   \setvalue{auxElems  = 1}
    \begin{tikzpicture}
    \input{./inputLayout/CALIFES.tex}
@@ -54,9 +54,13 @@ See README.md for more information.
   \begin{tikzpicture}
     \input{./inputLayout/EXPERIMENTAL1.tex}
   \end{tikzpicture}
-  \input{./inputLayout/LEGEND.tex}
+   \input{./inputLayout/LEGEND.tex}
+
+\newpage
+\rotatebox{90}{\input{./inputLayout/LEGEND.tex}}
+
+
 \end{center}
 \noindent\makebox[\linewidth]{\rule{\linewidth}{1.0pt}}
-
 
 \end{document}
