@@ -69,8 +69,6 @@
     % --------------------------------------------
 
 
-    
-
     \pgfmathsetmacro{\BPMx}{9.2}
     \pgfmathsetmacro{\BPMy}{\SrcY + (\SrcX-\BPMx)*tan(\SrcAngle)}
     \begin{scope}[shift={(0,\BPMy)}, rotate around={\BeamDir:(\BPMx,0)}] % BeamDir = -\SrcAngle
@@ -170,15 +168,6 @@
       \dipole[0]{\BHBx}{BHB 100}{{0}};
     \end{scope}
     
-
-
-
-
-
-
-
-
-
 
     
 
@@ -295,4 +284,3 @@
             \if\getvalue{elemnames_newbeamline}1
         \node[rotate=-90] at (0.45,1.6) {\belemsiz ICT 620};
     \fi
-
