@@ -21,7 +21,7 @@
 \declare{} %Setup the /variables directory
 
 % set up externalization (COMMENT OUT FOR DEBUGGING!)
-%\usetikzlibrary{external}
+\usetikzlibrary{external}
 %\tikzexternalize[prefix=./outputLayout/]
 
 % load macros
@@ -37,30 +37,42 @@ See README.md for more information.
 
 \noindent\makebox[\linewidth]{\rule{\linewidth}{1.0pt}}
 
-\setvalue{unbroken = 1} %Do draw VESPER dipole in EXPERIMENTAL1 etc.
+\setvalue{unbroken = 0} %Do draw VESPER dipole in EXPERIMENTAL1 etc.
 
 \begin{center}
 
   \setvalue{distances = 0}
   \setvalue{elemnames = 1}
-  % \setvalue{elemnames_newbeamline = 1}
+  \setvalue{elemnames_newbeamline = 0}
   \setvalue{auxElems  = 1}
+  
    \begin{tikzpicture}
    \input{./inputLayout/CALIFES.tex}
   \end{tikzpicture}
+  
   \begin{tikzpicture}
     \input{./inputLayout/NEWBEAMLINE.tex}
   \end{tikzpicture}
+  
   \begin{tikzpicture}
     \input{./inputLayout/EXPERIMENTAL1.tex}
   \end{tikzpicture}
-   \input{./inputLayout/LEGEND.tex}
-
+ 
+  \begin{tikzpicture}
+     \input{./inputLayout/LEGEND.tex}
+   \end{tikzpicture}
+   
 \newpage
-\rotatebox{90}{\input{./inputLayout/LEGEND.tex}}
+
+\rotatebox{90}{
+  \begin{tikzpicture}
+     \input{./inputLayout/LEGEND.tex}
+  \end{tikzpicture}
+}
 
 
 \end{center}
+
 \noindent\makebox[\linewidth]{\rule{\linewidth}{1.0pt}}
 
 \end{document}
