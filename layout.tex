@@ -22,7 +22,7 @@
 
 % set up externalization (COMMENT OUT FOR DEBUGGING!)
 \usetikzlibrary{external}
-%\tikzexternalize[prefix=./outputLayout/]
+\tikzexternalize[prefix=./outputLayout/]
 
 % load macros
 \input{./inputLayout/BEAMLINE_TIKZMACROS.tex}
@@ -57,10 +57,11 @@ See README.md for more information.
   \begin{tikzpicture}
     \input{./inputLayout/EXPERIMENTAL1.tex}
   \end{tikzpicture}
- 
-  \begin{tikzpicture}
-     \input{./inputLayout/LEGEND.tex}
-   \end{tikzpicture}
+
+  %Too wide for 1 page
+  %\begin{tikzpicture}
+  %   \input{./inputLayout/LEGEND.tex}
+  %\end{tikzpicture}
    
 \newpage
 
