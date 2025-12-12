@@ -150,6 +150,9 @@
   \fi
 }
 
+% ARG 1: Y pos (default = 0.0)
+% ARG 2: X pos
+% ARG 3: text
 \newcommand{\prescatt}[3][0.0]{
     \draw[ultra thick, brown] (#2,#1) circle (0.3);
     \draw[ultra thick, brown] (#2-0.15,#1-0.15) -- (#2+0.15,#1+0.15);
@@ -160,6 +163,9 @@
     \fi
 }
 
+% ARG 1: Y pos (default = 0.0)
+% ARG 2: X pos
+% ARG 3: text
 \newcommand{\scatt}[3][0.0]{
     \def\radius{0.3}
     \def\trianglesize{0.18}

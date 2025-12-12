@@ -1,12 +1,17 @@
+% WARNING: 
+% to work properly, this has to be compiled with the --shell-escape option of pdflatex
+% If you are using TeXShop, you must set this in
+%     TeXShop → Settings/Preferences → Engine by adding --shell-escape to the pdfLaTeX command/arguments.
 \documentclass{article}
 \pagestyle{empty}
-
-\usepackage[a3paper,landscape,margin=1cm]{geometry}
-%\usepackage{showframe} % DO NOT COMBINE WITH TIKZexternalize
-
 \usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[a3paper,landscape,margin=1cm]{geometry}
 
-% \usepackage{etoolbox}
+% Set up externalization
+\usetikzlibrary{external}
+\tikzexternalize[prefix=./outputLayout_unbroken/]
+\tikzset{external/force remake}
 
 %Set/get variables, see https://tex.stackexchange.com/a/37113
 \usepackage{pgfkeys}
@@ -20,14 +25,11 @@
 }
 \declare{} %Setup the /variables directory
 
-% set up externalization (COMMENT OUT FOR DEBUGGING!)
-\usetikzlibrary{external}
-\tikzexternalize[prefix=./outputLayout$_$unbroken/]
 
-% load macros
+% Load macros
 \input{./inputLayout/BEAMLINE_TIKZMACROS.tex}
 
-% document with single figures
+% Document with single figures
 \begin{document}
 
 \section{CLEAR beamline layout drawings (UNBROKEN)}
@@ -37,63 +39,82 @@ When tikzexternalize is on, output is saved to folder \texttt{outputLayout\_unbr
 
 \noindent\makebox[\linewidth]{\rule{\linewidth}{1.0pt}}
 
-\setvalue{unbroken = 1} %Don't draw VESPER dipole in EXPERIMENTAL1 etc.
+\setvalue{unbroken = 1} % Do not draw VESPER dipole in EXPERIMENTAL1 etc.
+\setvalue{elemnames_newbeamline = 0} % Add names above elements
+
 
 \subsection{All text ON}
+\setvalue{distances = 1}
+\setvalue{elemnames = 1}
+\setvalue{auxElems  = 1}
+
 \begin{center}
-  \setvalue{distances = 1}
-  \setvalue{elemnames = 1}
-  \setvalue{auxElems  = 1}
+\resizebox{0.9\textwidth}{!}{%
+  \tikzsetnextfilename{everything}
   \begin{tikzpicture}
-   \input{./inputLayout/CALIFES.tex}
+    \begin{scope}
+      \input{./inputLayout/CALIFES.tex}
+    \end{scope}
+    \begin{scope}[shift={(-14.4,2.96)}]
+      \input{./inputLayout/NEWBEAMLINE.tex}
+    \end{scope}
+    \begin{scope}[shift={(-16.8,0)}]
+      \input{./inputLayout/EXPERIMENTAL1.tex}
+    \end{scope}
   \end{tikzpicture}
-  \begin{tikzpicture}
-    \input{./inputLayout/NEWBEAMLINE.tex}
-  \end{tikzpicture}
-  \begin{tikzpicture}
-    \input{./inputLayout/EXPERIMENTAL1.tex}
-  \end{tikzpicture}
-  % \input{./inputLayout/LEGEND.tex}
+}
 \end{center}
 \noindent\makebox[\linewidth]{\rule{\linewidth}{1.0pt}}
+
+
 
 %\newpage
 \subsection{Simplified (no distances or element names)}
+\setvalue{distances = 0}
+\setvalue{elemnames = 0}
+\setvalue{auxElems  = 1}
+  
 \begin{center}
-  \setvalue{distances = 0}
-  \setvalue{elemnames = 0}
-  \setvalue{auxElems  = 1}
+\resizebox{0.9\textwidth}{!}{%
+  \tikzsetnextfilename{no_names}
   \begin{tikzpicture}
     \begin{scope}
       \input{./inputLayout/CALIFES.tex}
     \end{scope}
-    \begin{scope}
+    \begin{scope}[shift={(-14.4,2.96)}]
       \input{./inputLayout/NEWBEAMLINE.tex}
     \end{scope}
     \begin{scope}[shift={(-16.8,0)}]
       \input{./inputLayout/EXPERIMENTAL1.tex}
     \end{scope}
   \end{tikzpicture}
+}
 \end{center}
 \noindent\makebox[\linewidth]{\rule{\linewidth}{1.0pt}}
 
+
+
 %\newpage
 \subsection{Beamline only (no distances, element names, RF, or laser)}
+\setvalue{distances = 0}
+\setvalue{elemnames = 0}
+\setvalue{auxElems  = 0}
+  
 \begin{center}
-  \setvalue{distances = 0}
-  \setvalue{elemnames = 0}
-  \setvalue{auxElems  = 0}
+\resizebox{0.9\textwidth}{!}{%
+  \tikzsetnextfilename{simplified}
   \begin{tikzpicture}
     \begin{scope}
       \input{./inputLayout/CALIFES.tex}
     \end{scope}
-    \begin{scope}
+    \begin{scope}[shift={(-14.4,2.96)}]
       \input{./inputLayout/NEWBEAMLINE.tex}
     \end{scope}
     \begin{scope}[shift={(-16.8,0)}]
       \input{./inputLayout/EXPERIMENTAL1.tex}
     \end{scope}
   \end{tikzpicture}
+}
 \end{center}
 \noindent\makebox[\linewidth]{\rule{\linewidth}{1.0pt}}
 

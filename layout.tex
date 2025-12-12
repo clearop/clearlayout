@@ -1,33 +1,36 @@
+% WARNING: 
+% to work properly, this has to be compiled with the --shell-escape option of pdflatex
+% If you are using TeXShop, you must set this in
+%     TeXShop → Settings/Preferences → Engine by adding --shell-escape to the pdfLaTeX command/arguments.
 \documentclass{article}
 \pagestyle{empty}
-
-\usepackage[a4paper,margin=1cm]{geometry}
-%\usepackage{showframe} % DO NOT COMBINE WITH TIKZexternalize
-
 \usepackage{tikz}
 \usetikzlibrary{calc}
-% \usepackage{etoolbox}
+\usepackage[a4paper,margin=1cm]{geometry}
 
-%Set/get variables, see https://tex.stackexchange.com/a/37113
+% Set up externalization
+\usetikzlibrary{external}
+\tikzexternalize[prefix=./outputLayout/]
+\tikzset{external/force remake}
+
+% Set/get variables, see https://tex.stackexchange.com/a/37113
 \usepackage{pgfkeys}
 \newcommand{\setvalue}[1]{\pgfkeys{/variables/#1}}
 \newcommand{\getvalue}[1]{\pgfkeysvalueof{/variables/#1}}
 \newcommand{\declare}[1]{%
-  \pgfkeys{
-    /variables/#1.is family,
-    /variables/#1.unknown/.style = {\pgfkeyscurrentpath/\pgfkeyscurrentname/.initial = ##1}
+  \pgfkeys{%
+    /variables/#1.is family,%
+    /variables/#1.unknown/.style = {%
+      \pgfkeyscurrentpath/\pgfkeyscurrentname/.initial = ##1%
+    }%
   }%
 }
-\declare{} %Setup the /variables directory
+\declare{} % Set up the /variables directory
 
-% set up externalization (COMMENT OUT FOR DEBUGGING!)
-\usetikzlibrary{external}
-%\tikzexternalize[prefix=./outputLayout/]
-
-% load macros
+% Load macros
 \input{./inputLayout/BEAMLINE_TIKZMACROS.tex}
 
-% document with single figures
+% Document with single figures
 \begin{document}
 
 \section{CLEAR beamline layout drawings}
@@ -37,42 +40,43 @@ See README.md for more information.
 
 \noindent\makebox[\linewidth]{\rule{\linewidth}{1.0pt}}
 
-\setvalue{unbroken = 0} %Do draw VESPER dipole in EXPERIMENTAL1 etc.
+\setvalue{unbroken = 0} % Do not draw VESPER dipole in EXPERIMENTAL1 etc.
+\setvalue{distances = 0} % Show distances
+\setvalue{elemnames = 1} % add names below elements
+\setvalue{elemnames_newbeamline = 0} % Add names above elements
+\setvalue{auxElems  = 1} % show auxiliary elements
 
 \begin{center}
 
-  \setvalue{distances = 0}
-  \setvalue{elemnames = 1}
-  \setvalue{elemnames_newbeamline = 0}
-  \setvalue{auxElems  = 1}
+    \resizebox{0.9\textwidth}{!}{%
+    \tikzsetnextfilename{califes}
+    \begin{tikzpicture}
+      \input{./inputLayout/CALIFES.tex}
+    \end{tikzpicture}%
+    }
+    
+    \resizebox{0.9\textwidth}{!}{%
+    \tikzsetnextfilename{newbeamline}
+    \begin{tikzpicture}
+      \input{./inputLayout/NEWBEAMLINE.tex}
+    \end{tikzpicture}%
+    }
+    
+    \resizebox{0.9\textwidth}{!}{%
+    \tikzsetnextfilename{experiments}
+    \begin{tikzpicture}
+      \input{./inputLayout/EXPERIMENTAL1.tex}
+    \end{tikzpicture}%
+    }
+    
+    \resizebox{0.9\textwidth}{!}{%
+    \tikzsetnextfilename{legend}
+    \begin{tikzpicture}
+      \input{./inputLayout/LEGEND.tex}
+    \end{tikzpicture}%
+    }
   
-   \begin{tikzpicture}
-   \input{./inputLayout/CALIFES.tex}
-  \end{tikzpicture}
-  
-  \begin{tikzpicture}
-    \input{./inputLayout/NEWBEAMLINE.tex}
-  \end{tikzpicture}
-  
-  \begin{tikzpicture}
-    \input{./inputLayout/EXPERIMENTAL1.tex}
-  \end{tikzpicture}
- 
-  \begin{tikzpicture}
-     \input{./inputLayout/LEGEND.tex}
-   \end{tikzpicture}
-   
-\newpage
-
-\rotatebox{90}{
-  \begin{tikzpicture}
-     \input{./inputLayout/LEGEND.tex}
-  \end{tikzpicture}
-}
-
-
 \end{center}
 
 \noindent\makebox[\linewidth]{\rule{\linewidth}{1.0pt}}
-
 \end{document}

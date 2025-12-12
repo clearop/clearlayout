@@ -68,8 +68,6 @@
     % --------------------------------------------
 
 
-    
-
     \pgfmathsetmacro{\BPMx}{9.2}
     \pgfmathsetmacro{\BPMy}{\SrcY + (\SrcX-\BPMx)*tan(\SrcAngle)}
     \begin{scope}[shift={(0,\BPMy)}, rotate around={\BeamDir:(\BPMx,0)}] % BeamDir = -\SrcAngle
@@ -166,12 +164,11 @@
     \pgfmathsetmacro{\BHBy}{\SrcY + (\SrcX-\BHBx)*tan(\SrcAngle)}
     
     \begin{scope}[shift={(0,\BHBy)}, rotate around={\BeamDir:(\BHBx,0)}]
-      \dipole[0]{\BHBx}{BHB 100}{{0}};
+      \dipole[0]{\BHBx}{BHB 100}{\SrcAngle/2};
     \end{scope}
     
 
-
-    \dipole[0]{8.55}{BHB 200}{{0}};
+    \dipole[0]{8.55}{BHB 200}{{-\SrcAngle/2}};
     \if\getvalue{elemnames_newbeamline}1
         \node[rotate=-90] at (8.55,1.6) {\belemsiz BHB 200};
     \fi
