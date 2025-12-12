@@ -4,6 +4,23 @@
 # for inclusion into other documents
 # K. Sjobak, 2025
 
+#Useful function
+convertPDFfiles () {
+    for f in `ls *.pdf`
+    do
+	echo "Processing '$f'..."
+	
+	#Using ImageMagic for converting from PDF
+	# For older versions of ImageMagic, the command is "convert" not "magick"
+	# Also note trick with ${f%.*} to remove .pdf from output file name
+	magick -density 300 -quality 100 $f ${f%.*}.png
+	
+	#Using Cairo to convert to SVG
+	pdftocairo -svg $f
+    done
+}
+
+#Where to return to
 p=`pwd`
 
 #Process layout.tex ...
@@ -23,22 +40,13 @@ rm layout-figure*.log
 rm layout-figure*.md5
 
 echo "Processing PDFs..."
-for f in `ls *.pdf`
-do
-    echo "Processing '$f'..."
+convertPDFfiles # Call function defined above
 
-    #Using ImageMagic for converting from PDF
-    # For older versions of ImageMagic, the command is "convert" not "magick"
-    # Also note trick with ${f%.*} to remove .pdf from output file name
-    magick -density 300 -quality 100 $f ${f%.*}.png
-
-    #Using Cairo to convert to SVG
-    pdftocairo -svg $f
-done
-
-
-# done.
-
+# done with layout.tex, return
 cd $p
 
-#Process
+#Process layout_unbroken.tex ...
+pdflatex -shell-escape layout_unbroken.tex
+echo "" #Blank line
+
+#TODO: Fix layout_unbroken.tex...

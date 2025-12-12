@@ -5,7 +5,7 @@
 %\usepackage{showframe} % DO NOT COMBINE WITH TIKZexternalize
 
 \usepackage{tikz}
-
+\usetikzlibrary{calc}
 % \usepackage{etoolbox}
 
 %Set/get variables, see https://tex.stackexchange.com/a/37113
@@ -22,7 +22,7 @@
 
 % set up externalization (COMMENT OUT FOR DEBUGGING!)
 \usetikzlibrary{external}
-\tikzexternalize[prefix=./outputLayout$_$unbroken/]
+\tikzexternalize[prefix=./outputLayout_unbroken/]
 
 % load macros
 \input{./inputLayout/BEAMLINE_TIKZMACROS.tex}
@@ -41,8 +41,9 @@ When tikzexternalize is on, output is saved to folder \texttt{outputLayout\_unbr
 
 \subsection{All text ON}
 \begin{center}
-  \setvalue{distances = 1}
+  \setvalue{distances = 0}
   \setvalue{elemnames = 1}
+  \setvalue{elemnames_newbeamline = 1}
   \setvalue{auxElems  = 1}
   \begin{tikzpicture}
    \input{./inputLayout/CALIFES.tex}
@@ -53,7 +54,9 @@ When tikzexternalize is on, output is saved to folder \texttt{outputLayout\_unbr
   \begin{tikzpicture}
     \input{./inputLayout/EXPERIMENTAL1.tex}
   \end{tikzpicture}
-  % \input{./inputLayout/LEGEND.tex}
+  \begin{tikzpicture}
+    \input{./inputLayout/LEGEND.tex}
+  \end{tikzpicture}
 \end{center}
 \noindent\makebox[\linewidth]{\rule{\linewidth}{1.0pt}}
 
