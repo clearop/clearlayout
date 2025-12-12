@@ -28,16 +28,9 @@ pdflatex -shell-escape layout.tex
 echo "" #Blank line
 
 cd outputLayout
-
-echo "Organizing files..."
-mv layout-figure0.pdf machine.pdf
-mv layout-figure1.pdf BL2.pdf
-mv layout-figure2.pdf experiments.pdf
-mv layout-figure3.pdf legend.pdf
-
-rm layout-figure*.dpth
-rm layout-figure*.log
-rm layout-figure*.md5
+rm *.dpth
+rm *.log
+rm *.md5
 
 echo "Processing PDFs..."
 convertPDFfiles # Call function defined above
@@ -45,8 +38,21 @@ convertPDFfiles # Call function defined above
 # done with layout.tex, return
 cd $p
 
+
 #Process layout_unbroken.tex ...
 pdflatex -shell-escape layout_unbroken.tex
 echo "" #Blank line
 
-#TODO: Fix layout_unbroken.tex...
+cd outputLayout_unbroken
+rm *.dpth
+rm *.log
+rm *.md5
+
+echo "Processing PDFs..."
+convertPDFfiles # Call function defined above
+
+# done with layout_unbroken.tex, return
+cd $p
+
+#
+echo "DONE"
