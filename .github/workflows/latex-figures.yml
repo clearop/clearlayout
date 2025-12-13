@@ -36,7 +36,7 @@ jobs:
             ./generate.sh
 
       - name: Commit updated figures
-        uses: step-security/git-auto-commit-action@v6
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "CI: update generated TikZ PNGs"
           file_pattern: |
