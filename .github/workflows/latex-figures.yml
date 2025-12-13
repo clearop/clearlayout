@@ -38,18 +38,5 @@ jobs:
       - name: Commit updated figures
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          commit_message: "CI: update generated TikZ PNGs"
+          commit_message: "CI: update generated TikZ PDFs, SVGs, PNGs"
           file_pattern: "*.pdf *.svg *.png"
-
-      - name: Upload figures (pdf/png/svg)
-        uses: actions/upload-artifact@v4
-        with:
-          name: figures
-          path: |
-            *.pdf
-            outputLayout/*.pdf
-            outputLayout/*.png
-            outputLayout/*.svg
-            outputLayout_unbroken/*.pdf
-            outputLayout_unbroken/*.png
-            outputLayout_unbroken/*.svg
