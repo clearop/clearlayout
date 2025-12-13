@@ -175,7 +175,7 @@
 <path clip-rule="nonzero" d="M 0.941406 44 L 52 44 L 52 106 L 0.941406 106 Z M 0.941406 44 "/>
 </clipPath>
 </defs>
-<path fill-rule="nonzero" fill="rgb(0%, 100%, 0%)" fill-opacity="1" stroke-width="0.3985" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 100%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 341.578109 -11.337933 L 341.578109 11.339639 L 382.68047 11.339639 L 382.68047 -11.337933 Z M 341.578109 -11.337933 " transform="matrix(0.994754, 0, 0, -0.994754, 20.479598, 52.166864)"/>
+<path fill-rule="nonzero" fill="rgb(100%, 0%, 0%)" fill-opacity="1" stroke-width="0.3985" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(100%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 341.578109 -11.337933 L 341.578109 11.339639 L 382.68047 11.339639 L 382.68047 -11.337933 Z M 341.578109 -11.337933 " transform="matrix(0.994754, 0, 0, -0.994754, 20.479598, 52.166864)"/>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyph-0-0" x="351.606187" y="34.418472"/>
 <use xlink:href="#glyph-0-1" x="359.713829" y="34.418472"/>
