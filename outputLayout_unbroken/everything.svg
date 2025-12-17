@@ -1400,7 +1400,7 @@
 <use xlink:href="#glyph-3-4" x="98.346069" y="89.284084"/>
 <use xlink:href="#glyph-3-34" x="98.346069" y="93.514643"/>
 </g>
-<path fill-rule="nonzero" fill="rgb(0%, 100%, 0%)" fill-opacity="1" stroke-width="0.3985" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 100%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -134.647753 -11.337743 L -134.647753 11.339685 L -93.542959 11.339685 L -93.542959 -11.337743 Z M -134.647753 -11.337743 " transform="matrix(0.999066, 0, 0, -0.999066, 495.400912, 122.305657)"/>
+<path fill-rule="nonzero" fill="rgb(100%, 0%, 0%)" fill-opacity="1" stroke-width="0.3985" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(100%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -134.647753 -11.337743 L -134.647753 11.339685 L -93.542959 11.339685 L -93.542959 -11.337743 Z M -134.647753 -11.337743 " transform="matrix(0.999066, 0, 0, -0.999066, 495.400912, 122.305657)"/>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyph-1-19" x="352.186785" y="104.48032"/>
 <use xlink:href="#glyph-1-6" x="360.329576" y="104.48032"/>
